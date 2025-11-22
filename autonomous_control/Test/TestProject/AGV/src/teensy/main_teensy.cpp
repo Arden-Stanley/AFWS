@@ -53,8 +53,6 @@ void loop() {
 
 
 
-
-
   }
   else if (agvrx.AutoDriveState.AutoDrive == false) {
     // You can ignore most of anything down here this is just manual drive code
@@ -74,13 +72,16 @@ void loop() {
 
 
 
+
     // Manual Drive Motor Control
     if (agvrx.Output.LWForward > 0 && agvrx.Output.LWReverse == 0) {
       analogWrite(LPWM,agvrx.Output.LWForward);
       digitalWrite(LINA, HIGH);
+      digitalWrite(LINB, LOW);
     } else if (agvrx.Output.LWReverse > 0 && agvrx.Output.LWForward == 0) {
       analogWrite(LPWM,agvrx.Output.LWReverse);
       digitalWrite(LINB, HIGH);
+      digitalWrite(LINA, LOW);
     } else {
       digitalWrite(LINA, LOW);
       digitalWrite(LINB, LOW);
@@ -89,9 +90,11 @@ void loop() {
     if (agvrx.Output.RWForward > 0 && agvrx.Output.RWReverse == 0) {
       analogWrite(RPWM, agvrx.Output.RWForward);
       digitalWrite(RINA, HIGH);
+      digitalWrite(RINB, LOW);
     } else if (agvrx.Output.RWReverse > 0 && agvrx.Output.RWForward == 0) {
       analogWrite(RPWM,agvrx.Output.RWReverse);
       digitalWrite(RINB, HIGH);
+      digitalWrite(RINA, LOW);
     } else {
       digitalWrite(RINA, LOW);
       digitalWrite(RINB, LOW);
@@ -125,4 +128,3 @@ void loop() {
 
 
 }
-

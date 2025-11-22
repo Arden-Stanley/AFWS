@@ -1,7 +1,10 @@
 #include <Arduino.h>
 #include "AGRIS.h"
 
-
+// Deadzones and Max Speed
+int LowDeadzone = 32000;
+int HighDeadzone =  36000;
+int MaxPWM = 127;
 // Packet IDs
 #define AutoDriveID 99
 #define ManualDriveID 32
@@ -29,12 +32,12 @@ void AGRIS::begin(int BaudRate, int TXPin, int RXPin) {
 void AGRIS::GetControllerData() {
     // Setting Joystick values
     // LStick
-    if (xboxController.xboxNotif.joyLVert > 34750) {// Can set a dead zone here
+    if (xboxController.xboxNotif.joyLVert > HighDeadzone) {// Can set a dead zone here
         Input.LSForward = 0;
-        Input.LSReverse = map(xboxController.xboxNotif.joyLVert, 34750, 65535, 0, 255);
+        Input.LSReverse = map(xboxController.xboxNotif.joyLVert, HighDeadzone, 65535, 0, MaxPWM);
     }
-    else if (xboxController.xboxNotif.joyLVert < 33000) {
-        Input.LSForward = map(xboxController.xboxNotif.joyLVert, 33000, 0, 0, 255);
+    else if (xboxController.xboxNotif.joyLVert < LowDeadzone) {
+        Input.LSForward = map(xboxController.xboxNotif.joyLVert, LowDeadzone, 0, 0, MaxPWM);
         Input.LSReverse = 0;
     } 
     else {
@@ -42,12 +45,12 @@ void AGRIS::GetControllerData() {
         Input.LSReverse = 0;
     }
     // RStick
-    if (xboxController.xboxNotif.joyRVert > 34750) {// Can set a dead zone here
+    if (xboxController.xboxNotif.joyRVert > HighDeadzone) {// Can set a dead zone here
         Input.RSForward = 0;
-        Input.RSReverse = map(xboxController.xboxNotif.joyRVert, 34750, 65535, 0, 255);
+        Input.RSReverse = map(xboxController.xboxNotif.joyRVert, HighDeadzone, 65535, 0, MaxPWM);
     }
-    else if (xboxController.xboxNotif.joyRVert < 33000) {
-        Input.RSForward = map(xboxController.xboxNotif.joyRVert, 33000, 0, 0, 255);
+    else if (xboxController.xboxNotif.joyRVert < LowDeadzone) {
+        Input.RSForward = map(xboxController.xboxNotif.joyRVert, LowDeadzone, 0, 0, MaxPWM);
         Input.RSReverse = 0;
     } 
     else {

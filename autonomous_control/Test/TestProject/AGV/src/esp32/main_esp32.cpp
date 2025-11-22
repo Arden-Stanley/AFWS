@@ -44,7 +44,6 @@ void loop() {
       agvtx.Input.RSReverse,
       xboxController.xboxNotif.joyLVert,
       xboxController.xboxNotif.joyRVert);
-      delay(250);
 
   }
   else {
@@ -52,5 +51,4 @@ void loop() {
     Serial.println("not connected");
 
   }
-  delay(250);
 }
