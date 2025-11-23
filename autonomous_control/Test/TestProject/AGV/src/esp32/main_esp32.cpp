@@ -15,7 +15,6 @@ AGRIS agvtx;
 #define TX_BAUD 115200
 
 
-// Setup Function
 void setup() {
   Serial.begin(115200);
   xboxController.begin();
@@ -23,13 +22,10 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
-
-// Loop Function
 void loop() {
-
   xboxController.onLoop(); // Need to look more at this from library
   if (xboxController.isConnected()) { 
-    // Turn on LED When connected
+    // Turn on LED when connected
     digitalWrite(LED_BUILTIN, HIGH);
     // Get the data from the controller
     agvtx.GetControllerData();
@@ -37,18 +33,22 @@ void loop() {
     agvtx.SetAutoDrive();
     // Send Controller Data
     agvtx.TX();
-    Serial.printf("LSForward: %d, LSReverse: %d, RSForward: %d, RSReverse: %d, LStick: %d, RStick: %d \n",
+    #ifdef Debug
+      Serial.printf("LSForward: %d, LSReverse: %d, RSForward: %d, RSReverse: %d, LStick: %d, RStick: %d \n",
       agvtx.Input.LSForward,
       agvtx.Input.LSReverse,
       agvtx.Input.RSForward,
       agvtx.Input.RSReverse,
       xboxController.xboxNotif.joyLVert,
       xboxController.xboxNotif.joyRVert);
-
+      delay(250);
+    #endif
   }
   else {
     digitalWrite(LED_BUILTIN, LOW);
+    #ifdef Debug
     Serial.println("not connected");
-
+    delay(500);
+    #endif
   }
 }

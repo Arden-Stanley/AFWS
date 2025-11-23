@@ -14,16 +14,11 @@ int MaxPWM = 127;
 
 // Shared
 AGRIS::AGRIS(){
-
 }
-
 // ESP32C6
 #ifdef ESP32C6
 #include <XboxSeriesXControllerESP32_asukiaaa.hpp>
 extern XboxSeriesXControllerESP32_asukiaaa::Core xboxController;
-
-
-
 
 void AGRIS::begin(int BaudRate, int TXPin, int RXPin) {
     Serial1.begin(BaudRate, SERIAL_8N1, RXPin, TXPin);
@@ -32,7 +27,7 @@ void AGRIS::begin(int BaudRate, int TXPin, int RXPin) {
 void AGRIS::GetControllerData() {
     // Setting Joystick values
     // LStick
-    if (xboxController.xboxNotif.joyLVert > HighDeadzone) {// Can set a dead zone here
+    if (xboxController.xboxNotif.joyLVert > HighDeadzone) {
         Input.LSForward = 0;
         Input.LSReverse = map(xboxController.xboxNotif.joyLVert, HighDeadzone, 65535, 0, MaxPWM);
     }
@@ -45,7 +40,7 @@ void AGRIS::GetControllerData() {
         Input.LSReverse = 0;
     }
     // RStick
-    if (xboxController.xboxNotif.joyRVert > HighDeadzone) {// Can set a dead zone here
+    if (xboxController.xboxNotif.joyRVert > HighDeadzone) {
         Input.RSForward = 0;
         Input.RSReverse = map(xboxController.xboxNotif.joyRVert, HighDeadzone, 65535, 0, MaxPWM);
     }
@@ -57,13 +52,13 @@ void AGRIS::GetControllerData() {
         Input.RSForward = 0;
         Input.RSReverse = 0;
     }
-    Input.RBumper = xboxController.xboxNotif.btnRB;
-    Input.LBumper = xboxController.xboxNotif.btnLB;
   // Turn Trigger integer values to bool values
     Input.RTrigger = xboxController.xboxNotif.trigRT > 500;
     Input.LTrigger = xboxController.xboxNotif.trigLT > 500;
     Input.Start = xboxController.xboxNotif.btnStart;
     Input.AButton = xboxController.xboxNotif.btnA;
+    Input.RBumper = xboxController.xboxNotif.btnRB;
+    Input.LBumper = xboxController.xboxNotif.btnLB;
 }
 
 // Dont know if i like it being a seperate function or not
@@ -79,12 +74,11 @@ void AGRIS::TX() {
     // AutoDrive Packet Creation
     uint8_t AutoDrivePacket[5];
     AutoDrivePacket[0] = StartByte;
-    AutoDrivePacket[1] = AutoDriveID; // 99 Lets Teensy know its a autodrive state packet
+    AutoDrivePacket[1] = AutoDriveID;
     AutoDrivePacket[2] = AutoDriveState.AutoDrive;
     AutoDrivePacket[3] = (AutoDrivePacket[1] + AutoDrivePacket[2]) & 0xFF;
     AutoDrivePacket[4] = EndByte;
 
-    // Send Packet
     Serial1.write(AutoDrivePacket, sizeof(AutoDrivePacket));
     
     if (AutoDriveState.AutoDrive == false) {
@@ -104,7 +98,6 @@ void AGRIS::TX() {
           ManualDrivePacket[11] = (ManualDrivePacket[2] + ManualDrivePacket[3] + ManualDrivePacket[4] + ManualDrivePacket[5] + ManualDrivePacket[6] + ManualDrivePacket[7] + ManualDrivePacket[8] + ManualDrivePacket[9] + ManualDrivePacket[10]) & 0xff; // Check sum 
           ManualDrivePacket[12] = EndByte; // End Byte (25 as Hex)
 
-          // Send Packet
           Serial1.write(ManualDrivePacket, sizeof(ManualDrivePacket));
     }
 
@@ -124,23 +117,11 @@ void AGRIS::TX() {
 // TEENSY
 #ifdef TEENSY
 
-
-
 void AGRIS::begin(int BaudRate, int TXPin, int RXPin) {
     Serial3.begin(BaudRate);
 }
 
-
-
-
-
-
-
-
 void AGRIS::RX() {
-
-
-
     while (Serial3.available()) {
         uint8_t ReadByte = Serial3.read();
         if (ReadByte == StartByte) {
@@ -202,7 +183,4 @@ void AGRIS::UnpackData(uint8_t* Buffer, uint8_t PacketLength) {
             break;
     }
 }
-
-
-
 #endif

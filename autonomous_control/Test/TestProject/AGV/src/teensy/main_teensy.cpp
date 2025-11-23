@@ -32,11 +32,14 @@ bool AutoDrive = false;
 void setup() {
 Serial.begin(115200);
 agvrx.begin(BaudRate, TX_PIN, RX_PIN);
-pinMode(13, OUTPUT); // On-board LED
-
+pinMode(13, OUTPUT); // Onboard LED
+pinMode(LINA, OUTPUT);
+pinMode(LINB, OUTPUT);
+pinMode(LPWM, OUTPUT);
+pinMode(RINA, OUTPUT);
+pinMode(RINB, OUTPUT);
+pinMode(RPWM, OUTPUT);
 }
-
-
 
 
 void loop() {
@@ -46,32 +49,21 @@ void loop() {
     digitalWrite(13, HIGH);
     Serial.printf("AutoDrive: %d\n", agvrx.AutoDriveState.AutoDrive);
     delay(250);
-
-
-
-
-
-
-
   }
+
   else if (agvrx.AutoDriveState.AutoDrive == false) {
     // You can ignore most of anything down here this is just manual drive code
-
     digitalWrite(13, LOW);
-    // ManualDriveCode
-    // digitalWrite(RInnerSolenoid, agvrx.Output.RISolenoid ? HIGH : LOW);
-    // digitalWrite(LInnerSolenoid, agvrx.Output.LISolenoid ? HIGH : LOW);
-    // digitalWrite(ROuterSolenoid, agvrx.Output.ROSolenoid ? HIGH : LOW);
-    // digitalWrite(LOuterSolenoid, agvrx.Output.LOSolenoid ? HIGH : LOW);
-    // Testing
-    //digitalWrite(ROuterSolenoid, agvrx.Output.ROSolenoid ? HIGH : LOW);
-    //digitalWrite(LOuterSolenoid, agvrx.Output.LOSolenoid ? HIGH : LOW);
-    //digitalWrite(OutPump, agvrx.Output.Pump ? HIGH : LOW);
-
-
-
-
-
+    
+    #ifdef SolenoidTest
+    digitalWrite(RInnerSolenoid, agvrx.Output.RISolenoid ? HIGH : LOW);
+    digitalWrite(LInnerSolenoid, agvrx.Output.LISolenoid ? HIGH : LOW);
+    digitalWrite(ROuterSolenoid, agvrx.Output.ROSolenoid ? HIGH : LOW);
+    digitalWrite(LOuterSolenoid, agvrx.Output.LOSolenoid ? HIGH : LOW);
+    digitalWrite(ROuterSolenoid, agvrx.Output.ROSolenoid ? HIGH : LOW);
+    digitalWrite(LOuterSolenoid, agvrx.Output.LOSolenoid ? HIGH : LOW);
+    digitalWrite(OutPump, agvrx.Output.Pump ? HIGH : LOW);
+    #endif
 
     // Manual Drive Motor Control
     if (agvrx.Output.LWForward > 0 && agvrx.Output.LWReverse == 0) {
@@ -101,7 +93,6 @@ void loop() {
       digitalWrite(RPWM, LOW);
     }
 
-
     #ifdef Debug
     Serial.printf("LWForward: %d, LWReverse: %d, RWForward: %d, RWReverse: %d\n",
       agvrx.Output.LWForward,
@@ -109,22 +100,6 @@ void loop() {
       agvrx.Output.RWForward,
       agvrx.Output.RWReverse);
       delay(250);
-
-
-
-
-  Serial.printf("LStick:%d  RStick:%d  LB:%d  RB:%d  LT:%d  RT:%d AutoDriveState:%d\n",
-    agvrx.Output.RWheel,
-    agvrx.Output.LWheel,
-    agvrx.Output.RISolenoid,
-    agvrx.Output.LISolenoid,
-    agvrx.Output.ROSolenoid,
-    agvrx.Output.LOSolenoid,
-    agvrx.AutoDriveState.AutoDrive);
     #endif
   }
-
-
-
-
 }
