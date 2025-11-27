@@ -1,12 +1,14 @@
 #include <Arduino.h>
 #include "AGRIS.h"
+#include "LidarC1.h"
 // Notes
 // Add timeout if autodrivepacket not recieved in time
 
 
 // Create Agris Object
 AGRIS agvrx;
-
+// Create Lidar Objet
+LidarC1 lidar;
 // Define Setup for AGRIS
 #define BaudRate 115200
 #define TX_PIN 14
@@ -27,11 +29,13 @@ AGRIS agvrx;
 
 // Initialize Variables
 bool AutoDrive = false;
-
+bool LidarHealth = false;
+bool LidarScan = false;
 
 void setup() {
 Serial.begin(115200);
 agvrx.begin(BaudRate, TX_PIN, RX_PIN);
+lidar.begin(460800);
 pinMode(13, OUTPUT); // Onboard LED
 pinMode(LINA, OUTPUT);
 pinMode(LINB, OUTPUT);
@@ -45,10 +49,26 @@ pinMode(RPWM, OUTPUT);
 void loop() {
   agvrx.RX();
   if (agvrx.AutoDriveState.AutoDrive == true) {
-    // AutoDrive Code
-    digitalWrite(13, HIGH);
-    Serial.printf("AutoDrive: %d\n", agvrx.AutoDriveState.AutoDrive);
-    delay(250);
+    if (LidarHealth == false) {
+      lidar.GetHealth();
+      lidar.ReadScan();
+      LidarHealth = true;
+    }
+    if (lidar.HealthData.Status == 0) {
+      if (LidarScan == false) {
+        lidar.StartScan();
+        delay(125);
+        lidar.ReadScan();
+        LidarScan = true;
+      }
+    }
+
+
+
+
+
+    
+
   }
 
   else if (agvrx.AutoDriveState.AutoDrive == false) {
@@ -103,3 +123,6 @@ void loop() {
     #endif
   }
 }
+
+
+
