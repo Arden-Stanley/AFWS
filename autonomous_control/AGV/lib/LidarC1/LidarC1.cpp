@@ -191,8 +191,9 @@ void LidarC1::ParseScanPacket(const uint8_t Packet[5]) {
     Parser.angle = rawangle/64.0f;
     Parser.distance = (rawdistance & 0x7FFF)/4.0f;
     float rad = Parser.angle*(pi/180.0f);
-    Parser.newX = Parser.distance*cosf(rad);
-    Parser.newY = Parser.distance*sinf(rad);
+    Parser.newX = Parser.distance*cosf(rad-(pi/2
+    ));
+    Parser.newY = Parser.distance*sinf(rad-(pi/2));
 
 }
 bool LidarC1::GetSingleScan() {

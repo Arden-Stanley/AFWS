@@ -1,9 +1,10 @@
 #include <Arduino.h>
 #include "AGRIS.h"
 #include "LidarC1.h"
+#include "StateMachine.h"
 // Notes
-// Add timeout if autodrivepacket not recieved in time
-// Added DMAMEM for the giant arrays of scan data
+// Need to add timeout if autodrivepacket not recieved in time
+// Added DMAMEM for the giant arrays of scan data (No idea if its working or not)
 
 // Create Agris Object
 AGRIS agvrx;
@@ -13,7 +14,7 @@ LidarC1 lidar(Serial1);
 #define BaudRate 115200
 #define TX_PIN 14
 #define RX_PIN 15
-// Define Lidar memory
+// Allocate lidar data memory
 #define MAXPOINTS 1000
 #define MAXCYCLES 5
 // Motor Driver Pin Definitions
@@ -23,33 +24,42 @@ LidarC1 lidar(Serial1);
 #define RINA 4
 #define RINB 5
 #define RPWM 6
+// GPS Pins
+#define GPSTX 
+#define GPSRX
+#define CompSDA
+#define CompCL
+// IMU Pins
+#define IMUSDA
+#define IMUSCL
 // Sprayer Pin definitions
 #define RInnerSolenoid 
 #define LInnerSolenoid 
 #define ROuterSolenoid 
 #define LOuterSolenoid 
 #define OutPump 
-
 // Initialize Variables
 bool AutoDrive = false;
-bool LidarHealth = false;
-bool LidarScan = false;
 
 void setup() {
-Serial.begin(115200);
-agvrx.begin(BaudRate, TX_PIN, RX_PIN);
-lidar.begin(460800);
-lidar.GetHealth();
-if (lidar.Health.status == 0) {
-  lidar.StartScan();
-}
-pinMode(13, OUTPUT); // Onboard LED
-pinMode(LINA, OUTPUT);
-pinMode(LINB, OUTPUT);
-pinMode(LPWM, OUTPUT);
-pinMode(RINA, OUTPUT);
-pinMode(RINB, OUTPUT);
-pinMode(RPWM, OUTPUT);
+  Serial.begin(115200);
+  agvrx.begin(BaudRate, TX_PIN, RX_PIN);
+  lidar.begin(460800);
+  lidar.GetHealth();
+
+  if (lidar.Health.status == 0) {
+    lidar.StartScan();
+  } else {
+    Serial.println("Health Scan Error")
+  }
+
+  pinMode(13, OUTPUT); // Onboard LED
+  pinMode(LINA, OUTPUT);
+  pinMode(LINB, OUTPUT);
+  pinMode(LPWM, OUTPUT);
+  pinMode(RINA, OUTPUT);
+  pinMode(RINB, OUTPUT);
+  pinMode(RPWM, OUTPUT);
 
 }
 
@@ -60,7 +70,8 @@ void loop() {
     if (lidar.Health.status == 0) {
       lidar.GetSingleScan();
       Serial.printf("Quality: %d, X: %d, Y: %d\n", lidar.Measurements[0].quality[0], lidar.Measurements[0].NewXCoord[0], lidar.Measurements[0].NewYCoord[0]);
-    }
+    } 
+    delay(50);
     
 
 

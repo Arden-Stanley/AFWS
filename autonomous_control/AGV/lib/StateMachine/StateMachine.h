@@ -3,15 +3,23 @@
 #include <Arduino.h>
 #include "AGVPins.h"
 
-enum class MainState {
+enum class mainState {
     AutoDrive,
     ManualDrive
 };
 
-
-enum class SubState {
+enum class subState {
     INBETWEEN_ROWS,
     END_OF_ROW,
     COLLISION_AVOIDANCE
 };
 
+class stateMachine {
+    public:
+
+
+    private:
+
+
+
+}
