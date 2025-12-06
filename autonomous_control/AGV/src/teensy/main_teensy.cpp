@@ -3,16 +3,19 @@
 #include "LidarC1.h"
 // Notes
 // Add timeout if autodrivepacket not recieved in time
-
+// Added DMAMEM for the giant arrays of scan data
 
 // Create Agris Object
 AGRIS agvrx;
 // Create Lidar Objet
-LidarC1 lidar;
+LidarC1 lidar(Serial1);
 // Define Setup for AGRIS
 #define BaudRate 115200
 #define TX_PIN 14
 #define RX_PIN 15
+// Define Lidar memory
+#define MAXPOINTS 1000
+#define MAXCYCLES 5
 // Motor Driver Pin Definitions
 #define LINA 7
 #define LINB 8
@@ -36,6 +39,10 @@ void setup() {
 Serial.begin(115200);
 agvrx.begin(BaudRate, TX_PIN, RX_PIN);
 lidar.begin(460800);
+lidar.GetHealth();
+if (lidar.Health.status == 0) {
+  lidar.StartScan();
+}
 pinMode(13, OUTPUT); // Onboard LED
 pinMode(LINA, OUTPUT);
 pinMode(LINB, OUTPUT);
@@ -43,28 +50,18 @@ pinMode(LPWM, OUTPUT);
 pinMode(RINA, OUTPUT);
 pinMode(RINB, OUTPUT);
 pinMode(RPWM, OUTPUT);
+
 }
 
 
 void loop() {
   agvrx.RX();
   if (agvrx.AutoDriveState.AutoDrive == true) {
-    if (LidarHealth == false) {
-      lidar.GetHealth();
-      lidar.ReadScan();
-      LidarHealth = true;
+    if (lidar.Health.status == 0) {
+      lidar.GetSingleScan();
+      Serial.printf("Quality: %d, X: %d, Y: %d\n", lidar.Measurements[0].quality[0], lidar.Measurements[0].NewXCoord[0], lidar.Measurements[0].NewYCoord[0]);
     }
-    if (lidar.HealthData.Status == 0) {
-      if (LidarScan == false) {
-        lidar.StartScan();
-        delay(125);
-        lidar.ReadScan();
-        LidarScan = true;
-      }
-    }
-
-
-
+    
 
 
     

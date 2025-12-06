@@ -42,6 +42,9 @@ class LidarC1 {
         void begin(uint32_t baudrate);
         void GetHealth();
         void StartScan();
+        void Stop();
+        void Reset();
+        void MotorSpeed(uint16_t RPM);
         bool GetDescriptor(uint8_t expectedDataType);
         bool GetHealthResponse();
         bool ReadScanPacket();
@@ -49,7 +52,7 @@ class LidarC1 {
         bool GetSingleScan();
         bool GetFullScan(uint8_t NumofCycles);
         void serialClear();
-        MeasurementData Measurements[MAXCYCLES];
+        static MeasurementData Measurements[MAXCYCLES];
         HealthData Health;
     private:
         ParserData Parser;

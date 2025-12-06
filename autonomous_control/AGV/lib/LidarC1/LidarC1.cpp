@@ -5,6 +5,8 @@
 
 // Notes
 // Have to define max point count and max cycle count above #include for memory allocation
+// Might switch to circular buffer for continuous data retieval
+// IMU/GPS Deskew
 
 // Start and Check Bytes
 #define StartByte 0xA5
@@ -30,6 +32,7 @@
 
 const float pi = 3.14159265;
 
+DMAMEM MeasurementData LidarC1::Measurements[MAXCYCLES];
 LidarC1::LidarC1(HardwareSerial& serial) : serial(serial) {
 
 }
@@ -108,13 +111,13 @@ void LidarC1::Reset() {
 
 void LidarC1::MotorSpeed(uint16_t RPM) {
     if (millis() > TCMD) {
-        uint8_t SpeedCmd[5];
-        SpeedCmd[0] = StartByte;
-        SpeedCmd[1] = MOTORSPEEDCMD;
-        SpeedCmd[2] = RPM >> 8 & 0xFF;
-        SpeedCmd[3] = RPM & 0xFF;
-        SpeedCmd[4] = 1;
-        serial.write(SpeedCMD, 5);
+        uint8_t speedCmd[5];
+        speedCmd[0] = StartByte;
+        speedCmd[1] = MOTORSPEEDCMD;
+        speedCmd[2] = RPM >> 8 & 0xFF;
+        speedCmd[3] = RPM & 0xFF;
+        speedCmd[4] = 1;
+        serial.write(speedCmd, 5);
         TCMD = millis() + MOTORDELAY;
     }
 }
@@ -208,7 +211,7 @@ bool LidarC1::GetSingleScan() {
 }
 
 bool LidarC1::GetFullScan(uint8_t NumofCycles) {
-    for (CycleIDX = 0; CycleIDX < NumofCycles; CycleIDX++) {
+    for (uint8_t CycleIDX = 0; CycleIDX < NumofCycles; CycleIDX++) {
         uint32_t StartTime = 0;
         uint16_t IDX = 0;
         if (Scanning) {
