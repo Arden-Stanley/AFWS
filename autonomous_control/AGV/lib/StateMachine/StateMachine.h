@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include "AGVPins.h"
+#include "AGVPinsDef.h"
 
 enum class mainState {
     AutoDrive,

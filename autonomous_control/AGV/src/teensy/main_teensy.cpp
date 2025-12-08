@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "AGRIS.h"
 #include "LidarC1.h"
-#include "StateMachine.h"
 // Notes
 // Need to add timeout if autodrivepacket not recieved in time
 // Added DMAMEM for the giant arrays of scan data (No idea if its working or not)
@@ -50,8 +49,8 @@ void setup() {
   if (lidar.Health.status == 0) {
     lidar.StartScan();
   } else {
-    Serial.println("Health Scan Error")
-  }
+    Serial.println("Health Scan Error");
+  };
 
   pinMode(13, OUTPUT); // Onboard LED
   pinMode(LINA, OUTPUT);

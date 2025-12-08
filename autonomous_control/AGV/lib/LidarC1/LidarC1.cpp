@@ -33,6 +33,7 @@
 const float pi = 3.14159265;
 
 DMAMEM MeasurementData LidarC1::Measurements[MAXCYCLES];
+
 LidarC1::LidarC1(HardwareSerial& serial) : serial(serial) {
 
 }
