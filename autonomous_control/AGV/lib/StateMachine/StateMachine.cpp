@@ -1,15 +1,20 @@
 #include <Arduino.h>
 #include "StateMachine.h"
 #include "AGVPinDefs.h"
+#include "LidarC1.h"
 
 //Notes
 // Ransac linefitting for row detection?
 // Maybe do a heatmap for obstacle detection?
 // IMU/GPS Fusion for better localization
-// Kalman FIlter for IMU/GPS Fusion
+// Kalman Filter for IMU/GPS Fusion
 // Deskewing Lidar Data
+// Do we want to constantly check state?
+
+#define agvBubble 254 // Bubble around AGV in mm
 
 
+LidarC1 lidar(Serial1)
 
 
 // Not sure if needed
@@ -26,6 +31,7 @@ void StateMachine::Start() {
 void StateMachine::Run() {
     Switch (MainState) {
         case MainState::AutoDrive:
+            currentState = START;
             StateMachine::RunAuto();
             break;
 
@@ -103,6 +109,8 @@ void StateMachine::RunAuto() {
             StateMachine::CollisionAvoidance();
             break;
         default:
+            // Defaults when no row detected on either side
+            // Might cause an issue with the end of row state moving so far out
 
             break;
     }
@@ -121,8 +129,17 @@ void StateMachine::EndofRow() {
     // IMU/GPS Fusion
     // Find End of Row
     // Pass End of Row by z amount
-    // Detect which side row is on
+    // Detect which side row is on (use leftRow and rightRow?)
     // Turn towards next row using constant radius turn with row edge as reference
+
+}
+
+void StateMachine::Turning() {
+
+}
+
+void StateMachine:: Alignment() {
+
 }
 
 void StateMachine::CollisionAvoidance() {
@@ -138,12 +155,17 @@ void StateMachine::StateDetection() {
     // Map Building
     // Sanity Checks
     // State Transition Logic
+        //Start
+            //
         //Inbetween Rows
             //
         //End of Row
             //
-        //Collision Avoidance
-            //
+
+
+    // TODO: pose Library?
+    Lidar.GetFullScan(1);
+    RowPresent();
     if (StateMachine::InbetweenRowCondition) {
         CurrentState = CurrentState::INBETWEEN_ROWS;
     } else if (StateMachine::EndofRowCondition) {
@@ -155,19 +177,45 @@ void StateMachine::StateDetection() {
 
 bool StateMachine::InbetweenRowCondition() {
     // Logic to determine if inbetween rows
-    return true;
+        if (leftRow || rightRow) { // Both Left and Right Detected
+            return true;
+        }
+        if (LeftRow) {
+            return true;
+        }
+        return false;
 }
 
 bool StateMachine::EndofRowCondition() {
     // Logic to determine if at end of row
-    return true;
+    if (!leftRow || !rightRow) {
+        return true;
+    }
+    return false;
 }
 
 bool StateMachine::CollisionAvoidanceCondition() {
     // Logic to determine if collision avoidance is needed
-    return true;
-}
+    // Might be better to do collision detection in lidar library so we dont need to do a for loop and we can check it as we get the data
+    // Using polar lidar data
+    #ifdef DISTANCE
+    uint16_t* mPtr = Measurement.Distance
+    for (uint16_t i = 0; i < sizeof(mPtr); i++) {
+        if (*mptr[i] < agvBubble) {
+            return true;
+        }
+        return false;
+    }
+    #endif
 
+    // TODO: Using rectangular coord data
+    #ifdef RECTANGULAR
+    collisionDistance =
+    if () {
+    return true;
+    }
+    return false;
+    #endif
 
 void StateMachine::ResetALL() {
     // Reset all variables and states
@@ -175,4 +223,37 @@ void StateMachine::ResetALL() {
 
 void StateMachine::ResetManual() {
     // Reset variables and states after manual intervention
+}
+
+// Might need to break this into functions one for left and one for right
+bool RowPresent() {
+    // leftMin = minimum angle for left side of scanner
+    // leftMax = maximum angle for left side of scanner
+    // rightMin = minimum angle for right side of scanner
+    // rightMax = maximum angle for right side of scanner
+    // threshold = theshold distance for it to be counted as a hit
+    // minHits = minimum number of hits for function to be satisfied that there is a row to the left or right
+    uint8_t leftHit = 0;
+    uint8_t rightHit = 0;
+    for (uint16_t i = 0; i < sizeof(Measurements[0].Angle); i++) {
+        if (Measurements[0].Angle[i] > leftMin && Measurements[0].Angle[i] < leftMax) {
+            if (Measurement[0].Distance[i] < threshold) {
+                leftHit++;
+            }
+        }
+        if (Measurements[0].Angle[i] > rightMin && Measurements[0].Angle[i] < rightMax)
+            if (Measurements[0].Distance[i] < threshold) {
+                rightHit++;
+            }
+    }
+    if (leftHit > minHits) {
+        bool leftRow = true;
+    } else {
+        leftRow = false;
+    }
+    if (rightHit > minHits) {
+        bool rightRow = true;
+    } else {
+        leftRow = false;
+    }
 }
