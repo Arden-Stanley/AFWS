@@ -15,7 +15,7 @@ def get_color(id):
     return tuple(random.randint(0, 255) for _ in range(3))
 
 #reading image data into buffer
-image = cv.imread(CAR_IMG_PATH)
+image = cv.imread(WEED_IMG_PATH)
 
 #tracking image data
 results = model.track(image)
@@ -31,8 +31,11 @@ for result in results:
 
             conf = float(box.conf[0])
 
-            color = get_color(cls);
+            color = get_color(cls)
 
-            cv.rectangle(image, (x1, y1), (x2, y2), color, 2);
+            cv.rectangle(image, (x1, y1), (x2, y2), color, 2)
+
 
 cv.imshow("test", image)
+cv.waitKey(0)
+cv.destroyAllWindows()
