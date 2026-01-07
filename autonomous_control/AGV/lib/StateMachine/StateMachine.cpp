@@ -112,6 +112,7 @@ void StateMachine::runAuto() {
     }
 }
 
+// Need to watch that video on state machines again
 void StateMachine::TransitionTo() {
 
 }
@@ -142,17 +143,21 @@ void StateMachine::InbetweenRows() {
     uint8_t i;
     rowPresent();
     if (!rightDetected && !leftDetected) {
-        sState = END_OF_ROW;
+        TransitionTo(EndofRow);
     }
-    RansacConversion();
     // RANSAC
     // find middle line between two ransac lines with respect to field coordinate frame
     // create waypoint
     // ransacMidPoint is the offset from the center of AGV to midpoint between two ransac lines
-    waypoint.x[waypoint.i] = pose.x + ransacMidPoint * sin(pose.yawRad);
-    waypoint.y[waypoint.i] = pose.y + set.waypointOffset * cos(pose.yawRad);
-    waypoint.i++;
-
+    uint32_t setTime = millis();
+    if (millis() > deadTime + setTime) {
+        RansacConversion();
+        RansacLineFit();
+        waypoint.x[waypoint.i] = pose.x + ransacMidPoint * sin(pose.yawRad);
+        waypoint.y[waypoint.i] = pose.y + set.waypointOffset * cos(pose.yawRad);
+        waypoint.i++;
+    }
+    DriveToWaypoint();
 }
 
 void StateMachine::EndofRow() {
@@ -162,31 +167,33 @@ void StateMachine::EndofRow() {
     // How do decide which direction to turn?
     // find beginning of new row?
     //
-    if (pose.compass > 180) {
+    if (pose.compass > 180) { // Maybe turn this into its own function in pose class
         float EORmark = pose.compass - 180;
     }
     if (pose.compass < 180) {
         float EORmark = pose.compass + 180;
     }
-    if ()
-    DetectNextDirection();
-
+    if (poseFunc.DistanceTravelled() >= 24) {
+    DetectTurnDirection();
+    TransitionTo();
+    }
 }
 
 void StateMachine::Turning() {
     // Make constant radius turn
     // Wait till 180 deg from previous compass marking
     // Change to aligning state
+    mControl.AutoForward(60, int8_t turn); // Might need to adjust these values for better turn performance
     if (pose.compass <= EORmark + 5 || pose.compass >= EORmark - 5) {
-        sState = ALIGNING;
+        TransitionTo();
     }
 }
 
 void StateMachine::Aligning() {
     if (leftDetected || rightDetected) {
-        sState = INBETWEEN_ROWS;
+        TransitionTo(InbetweenRows);
     }
-    LookForward();
+    DetectNextRow();
     // Maybe use old row coord + estimated row offset = new row coords
     // see if rows left and right then switch to inbetween rows
 
@@ -199,17 +206,34 @@ void StateMachine::CollisionAvoidance() {
 
 void RansacConversion () {
     for (uint16_t i; i < m.count; i++) {
+        // Change these angles so we filter more data out
         if (m.angle[i] > 0 && m.angle[i] < 180) {
             float rad = m.angle[i] * (pi/180);
-            leftrow.x = m.distance[i] * sin(rad);
-            leftrow.y = m.distance[i] * cos(rad);
+            leftRow.x = m.distance[i] * sin(rad);
+            leftRow.y = m.distance[i] * cos(rad);
         }
         if (m.angle[i] > 180 && m.angle[i] < 360) {
             float rad = m.angle[i] * (pi/180);
-            leftrow.x = m.distance[i] * sin(rad);
-            leftrow.y = m.distance[i] * cos(rad);
+            rightRow.x = m.distance[i] * sin(rad);
+            rightRow.y = m.distance[i] * cos(rad);
         }
     }
+}
+
+void Ransac() {
+
+}
+
+void DriveToWaypoint() {
+
+}
+
+void DetectTurnDirection() {
+
+}
+
+void DetectNextRow() {
+
 }
 
 void RowPresent() {
@@ -218,7 +242,7 @@ void RowPresent() {
         if (m.angle[i] > (90-set.detectionAngle/2) && m.angle < (90+set.detectionAngle/2) && m.distance[i] < set.detecctionThreshold) {
                 uint8_t leftHit++;
         }
-        if (m.angle[i] > (90-set.detectionAngle/2) && m.angle < (90+set.detectionAngle/2) && m.distnace[i] < set.detectionThreshold) {
+        if (m.angle[i] > (90-set.detectionAngle/2) && m.angle < (90+set.detectionAngle/2) && m.distance[i] < set.detectionThreshold) {
                 uint8_t rightHit++;
         }
     } // TODO: turn these into ternary operators?
