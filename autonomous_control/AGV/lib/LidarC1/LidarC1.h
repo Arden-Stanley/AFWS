@@ -16,8 +16,8 @@ struct ParserData{
     uint8_t quality;
     float angle;
     float distance;
-    float newX;
-    float newY;
+    //float newX;
+    //float newY;
 };
 
 struct MeasurementData{
@@ -27,8 +27,8 @@ struct MeasurementData{
     uint8_t quality[MAXPOINTS];
     float angle[MAXPOINTS];
     float distance[MAXPOINTS];
-    float NewXCoord[MAXPOINTS];
-    float NewYCoord[MAXPOINTS];
+    //float NewXCoord[MAXPOINTS];
+    //float NewYCoord[MAXPOINTS];
 };
 
 struct HealthData {
@@ -51,10 +51,11 @@ class LidarC1 {
         void ParseScanPacket(const uint8_t Packet[5]);
         bool GetSingleScan();
         bool GetFullScan(uint8_t NumofCycles);
+        const MeasurementData& GetMeasurement() const;
         void serialClear();
-        static MeasurementData Measurements[MAXCYCLES];
         HealthData Health;
     private:
+        static MeasurementData m[MAXCYCLES];
         ParserData Parser;
         HardwareSerial& serial;
         uint32_t serialTimeout = 1000;

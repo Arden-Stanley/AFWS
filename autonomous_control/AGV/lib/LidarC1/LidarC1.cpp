@@ -43,9 +43,6 @@ void LidarC1::begin(uint32_t baudrate) {
     serialTimeout = 1000;
     serialClear();
     Scanning = false;
-    
-
-
 }
 
 void LidarC1::GetHealth() {
@@ -187,25 +184,24 @@ void LidarC1::ParseScanPacket(const uint8_t Packet[5]) {
     Parser.timeStamp = millis();
     Parser.quality = Packet[0] >> 2;
     // In the ESP32 Code it wraps angle but i dont think it can send an angle over 360 deg
-    uint16_t rawangle = (Packet[1] >> 1) | (Packet[2] << 7);
-    uint16_t rawdistance = (Packet[3]) | (Packet[4] << 8);
-    Parser.angle = rawangle/64.0f;
-    Parser.distance = (rawdistance & 0x7FFF)/4.0f;
-    float rad = Parser.angle*(pi/180.0f);
-    Parser.newX = Parser.distance*cosf(rad-(pi/2
-    ));
-    Parser.newY = Parser.distance*sinf(rad-(pi/2));
+    uint16_t rawAngle = (Packet[1] >> 1) | (Packet[2] << 7);
+    uint16_t rawDistance = (Packet[3]) | (Packet[4] << 8);
+    Parser.angle = rawAngle/64.0f;
+    Parser.distance = (rawDistance & 0x7FFF)/4.0f;
+    //float rad = Parser.angle*(pi/180.0f);
+    //Parser.newX = Parser.distance*cosf(rad-(pi/2));
+    //Parser.newY = Parser.distance*sinf(rad-(pi/2));
 
 }
 bool LidarC1::GetSingleScan() {
     if (Scanning) {
         if (!ReadScanPacket()) return false;
-        Measurements[0].timeStamp[0] = Parser.timeStamp;
-        Measurements[0].quality[0] = Parser.quality;
-        Measurements[0].angle[0] = Parser.angle;
-        Measurements[0].distance[0] = Parser.distance;
-        Measurements[0].NewXCoord[0] = Parser.newX;
-        Measurements[0].NewYCoord[0] = Parser.newY;
+        m[0].timeStamp[0] = Parser.timeStamp;
+        m[0].quality[0] = Parser.quality;
+        m[0].angle[0] = Parser.angle;
+        m[0].distance[0] = Parser.distance;
+        //Measurements[0].NewXCoord[0] = Parser.newX;
+        //Measurements[0].NewYCoord[0] = Parser.newY;
         return true;
         
     }
@@ -222,12 +218,12 @@ bool LidarC1::GetFullScan(uint8_t NumofCycles) {
                     if (!ReadScanPacket()) return false;
                     if (Parser.startFlag) {
                         StartTime = millis();
-                        Measurements[CycleIDX].timeStamp[IDX] = Parser.timeStamp;
-                        Measurements[CycleIDX].quality[IDX] = Parser.quality;
-                        Measurements[CycleIDX].angle[IDX] = Parser.angle;
-                        Measurements[CycleIDX].distance[IDX] = Parser.distance;
-                        Measurements[CycleIDX].NewXCoord[IDX] = Parser.newX;
-                        Measurements[CycleIDX].NewYCoord[IDX] = Parser.newY;
+                        m[CycleIDX].timeStamp[IDX] = Parser.timeStamp;
+                        m[CycleIDX].quality[IDX] = Parser.quality;
+                        m[CycleIDX].angle[IDX] = Parser.angle;
+                        m[CycleIDX].distance[IDX] = Parser.distance;
+                        //Measurements[CycleIDX].NewXCoord[IDX] = Parser.newX;
+                        //Measurements[CycleIDX].NewYCoord[IDX] = Parser.newY;
                         IDX++;
                         break;
                     }
@@ -235,16 +231,16 @@ bool LidarC1::GetFullScan(uint8_t NumofCycles) {
                 while (true) {
                     if (!ReadScanPacket()) return false;
                     if (!Parser.startFlag) {
-                        Measurements[CycleIDX].timeStamp[IDX] = Parser.timeStamp;
-                        Measurements[CycleIDX].quality[IDX] = Parser.quality;
-                        Measurements[CycleIDX].angle[IDX] = Parser.angle;
-                        Measurements[CycleIDX].distance[IDX] = Parser.distance;
-                        Measurements[CycleIDX].NewXCoord[IDX] = Parser.newX;
-                        Measurements[CycleIDX].NewYCoord[IDX] = Parser.newY;
+                        m[CycleIDX].timeStamp[IDX] = Parser.timeStamp;
+                        m[CycleIDX].quality[IDX] = Parser.quality;
+                        m[CycleIDX].angle[IDX] = Parser.angle;
+                        m[CycleIDX].distance[IDX] = Parser.distance;
+                        //Measurements[CycleIDX].NewXCoord[IDX] = Parser.newX;
+                        //Measurements[CycleIDX].NewYCoord[IDX] = Parser.newY;
                         IDX++;
                     } else {
-                        Measurements[CycleIDX].time = millis() - StartTime;
-                        Measurements[CycleIDX].count = IDX;
+                        m[CycleIDX].time = millis() - StartTime;
+                        m[CycleIDX].count = IDX;
                         break;
                     }
                 }
@@ -253,6 +249,11 @@ bool LidarC1::GetFullScan(uint8_t NumofCycles) {
     } 
     return true;
 }
+
+MeasurementData GetMeasuremen() {
+    return m[MAXCYCLES]
+}
+
 void LidarC1::serialClear() {
     while (serial.available() > 0) {
         serial.read();

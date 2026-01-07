@@ -210,10 +210,10 @@ bool StateMachine::CollisionAvoidanceCondition() {
 
     // TODO: Using rectangular coord data
     #ifdef RECTANGULAR
-    collisionDistance =
+    collisionDistance = 0;
     if () {
     return true;
-    }
+    };
     return false;
     #endif
 
