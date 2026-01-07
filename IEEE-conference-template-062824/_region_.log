@@ -1,0 +1,1090 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=latex 2025.12.10)  6 JAN 2026 00:14
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**\nonstopmode\nofiles\PassOptionsToPackage{active,tightpage,auctex}{preview}\AtBeginDocument{\ifx\ifPreview\undefined\RequirePackage[displaymath,floats,graphics,textmath,sections,footnotes]{preview}[2004/11/05]\fi} \input \detokenize{ _region_.tex }
+(./_region_.tex  !name(IEEE-conference-template-062824.tex) (./IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen148
+\@IEEEtrantmpdimenB=\dimen149
+\@IEEEtrantmpdimenC=\dimen150
+\@IEEEtrantmpcountA=\count275
+\@IEEEtrantmpcountB=\count276
+\@IEEEtrantmpcountC=\count277
+\@IEEEtrantmptoksA=\toks17
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 503.
+(c:/texlive/2025/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+\@IEEEnormalsizeunitybaselineskip=\dimen151
+-- This is a 10 point document.
+LaTeX Encoding Info:    Redeclaring text command \textunderscore (encoding ?) on input line 937.
+\CLASSINFOnormalsizebaselineskip=\dimen152
+\CLASSINFOnormalsizeunitybaselineskip=\dimen153
+\IEEEnormaljot=\dimen154
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+\IEEEquantizedlength=\dimen155
+\IEEEquantizedlengthdiff=\dimen156
+\IEEEquantizedtextheightdiff=\dimen157
+\IEEEilabelindentA=\dimen158
+\IEEEilabelindentB=\dimen159
+\IEEEilabelindent=\dimen160
+\IEEEelabelindent=\dimen161
+\IEEEdlabelindent=\dimen162
+\IEEElabelindent=\dimen163
+\IEEEiednormlabelsep=\dimen164
+\IEEEiedmathlabelsep=\dimen165
+\IEEEiedtopsep=\skip49
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@IEEEsubequation=\count282
+\abovecaptionskip=\skip50
+\belowcaptionskip=\skip51
+\c@figure=\count283
+\c@table=\count284
+\@IEEEeqnnumcols=\count285
+\@IEEEeqncolcnt=\count286
+\@IEEEsubeqnnumrollback=\count287
+\@IEEEquantizeheightA=\dimen166
+\@IEEEquantizeheightB=\dimen167
+\@IEEEquantizeheightC=\dimen168
+\@IEEEquantizeprevdepth=\dimen169
+\@IEEEquantizemultiple=\count288
+\@IEEEquantizeboxA=\box53
+\@IEEEtmpitemindent=\dimen170
+\IEEEPARstartletwidth=\dimen171
+\c@IEEEbiography=\count289
+\@IEEEtranrubishbin=\box54
+)
+** ATTENTION: Overriding command lockouts (line 2).
+(c:/texlive/2025/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip52
+
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+ (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen172
+)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen173
+) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count290
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count291
+\leftroot@=\count292
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count293
+\DOTSCASE@=\count294
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box55
+\strutbox@=\box56
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen174
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count295
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count296
+\dotsspace@=\muskip17
+\c@parentequation=\count297
+\dspbrk@lvl=\count298
+\tag@help=\toks19
+\row@=\count299
+\column@=\count300
+\maxfields@=\count301
+\andhelp@=\toks20
+\eqnshift@=\dimen175
+\alignsep@=\dimen176
+\tagshift@=\dimen177
+\tagwidth@=\dimen178
+\totwidth@=\dimen179
+\lineht@=\dimen180
+\@envbody=\toks21
+\multlinegap=\skip53
+\multlinetaggap=\skip54
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (c:/texlive/2025/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+ (c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+) (c:/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+\c@ALC@unique=\count302
+\c@ALC@line=\count303
+\c@ALC@rem=\count304
+\c@ALC@depth=\count305
+\ALC@tlm=\skip55
+\algorithmicindent=\skip56
+) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 106.
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
+))
+\Gin@req@height=\dimen181
+\Gin@req@width=\dimen182
+) (c:/texlive/2025/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+) (c:/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: dvips.def on input line 274.
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+File: l3backend-dvips.def 2025-10-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box57
+\l__pdfannot_backend_model_box=\box58
+\g__pdfannot_backend_int=\count306
+\g__pdfannot_backend_link_int=\count307
+\g__pdfannot_backend_link_sf_int=\count308
+)
+No file _region_.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+-- Lines per column: 56 (exact).
+(c:/Users/Tommy/.emacs.d/.local/straight/build-30.1/auctex/latex/preview.sty
+Package: preview 2024/06/30 14.0.6 (AUCTeX/preview-latex)
+ (c:/texlive/2025/texmf-dist/tex/generic/luatex85/luatex85.sty
+Package: luatex85 2016/06/15 v1.4 pdftex aliases for luatex
+) (c:/Users/Tommy/.emacs.d/.local/straight/build-30.1/auctex/latex/prtightpage.def
+\PreviewBorder=\dimen183
+) (c:/Users/Tommy/.emacs.d/.local/straight/build-30.1/auctex/latex/prauctex.def
+No auxiliary output files.
+
+
+\hbadness=\count309
+\hfuzz=\dimen184
+(c:/Users/Tommy/.emacs.d/.local/straight/build-30.1/auctex/latex/prauctex.cfg)) (c:/Users/Tommy/.emacs.d/.local/straight/build-30.1/auctex/latex/prfootnotes.def)
+\pr@snippet=\count310
+\pr@box=\box59
+\pr@output=\toks24
+
+Preview: Fontsize 10pt
+)  !name(IEEE-conference-template-062824.tex) !offset(-3) 
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
+ (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
+ (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+./_region_.tex:23: Misplaced \crcr.
+\IEEEauthorblockN ...lockNinterlinespace }#1\crcr 
+                                                  
+l.23 ...{1\textsuperscript{st} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:27: Misplaced \cr.
+\@IEEEauthorblockAtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockAtops...
+l.27 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:27: Misplaced \noalign.
+\@IEEEauthorblockAtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockAtops...
+l.27 email address or ORCID}
+                            
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:27: Misplaced \crcr.
+\IEEEauthorblockA ...lockAinterlinespace }#1\crcr 
+                                                  \ifCLASSOPTIONtransmag \gd...
+l.27 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:29: Misplaced \cr.
+\@IEEEauthorblockNtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockNtops...
+l.29 ...lockN{2\textsuperscript{nd} Thomas Paxton}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:29: Misplaced \noalign.
+\@IEEEauthorblockNtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockNtops...
+l.29 ...lockN{2\textsuperscript{nd} Thomas Paxton}
+                                                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:29: Misplaced \crcr.
+\IEEEauthorblockN ...lockNinterlinespace }#1\crcr 
+                                                  
+l.29 ...lockN{2\textsuperscript{nd} Thomas Paxton}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:33: Misplaced \cr.
+\@IEEEauthorblockAtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockAtops...
+l.33 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:33: Misplaced \noalign.
+\@IEEEauthorblockAtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockAtops...
+l.33 email address or ORCID}
+                            
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:33: Misplaced \crcr.
+\IEEEauthorblockA ...lockAinterlinespace }#1\crcr 
+                                                  \ifCLASSOPTIONtransmag \gd...
+l.33 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:35: Misplaced \cr.
+\@IEEEauthorblockNtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockNtops...
+l.35 ...{3\textsuperscript{rd} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:35: Misplaced \noalign.
+\@IEEEauthorblockNtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockNtops...
+l.35 ...{3\textsuperscript{rd} Given Name Surname}
+                                                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:35: Misplaced \crcr.
+\IEEEauthorblockN ...lockNinterlinespace }#1\crcr 
+                                                  
+l.35 ...{3\textsuperscript{rd} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:39: Misplaced \cr.
+\@IEEEauthorblockAtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockAtops...
+l.39 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:39: Misplaced \noalign.
+\@IEEEauthorblockAtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockAtops...
+l.39 email address or ORCID}
+                            
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:39: Misplaced \crcr.
+\IEEEauthorblockA ...lockAinterlinespace }#1\crcr 
+                                                  \ifCLASSOPTIONtransmag \gd...
+l.39 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:41: Misplaced \cr.
+\@IEEEauthorblockNtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockNtops...
+l.41 ...{4\textsuperscript{th} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:41: Misplaced \noalign.
+\@IEEEauthorblockNtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockNtops...
+l.41 ...{4\textsuperscript{th} Given Name Surname}
+                                                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:41: Misplaced \crcr.
+\IEEEauthorblockN ...lockNinterlinespace }#1\crcr 
+                                                  
+l.41 ...{4\textsuperscript{th} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:45: Misplaced \cr.
+\@IEEEauthorblockAtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockAtops...
+l.45 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:45: Misplaced \noalign.
+\@IEEEauthorblockAtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockAtops...
+l.45 email address or ORCID}
+                            
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:45: Misplaced \crcr.
+\IEEEauthorblockA ...lockAinterlinespace }#1\crcr 
+                                                  \ifCLASSOPTIONtransmag \gd...
+l.45 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:47: Misplaced \cr.
+\@IEEEauthorblockNtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockNtops...
+l.47 ...{5\textsuperscript{th} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:47: Misplaced \noalign.
+\@IEEEauthorblockNtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockNtops...
+l.47 ...{5\textsuperscript{th} Given Name Surname}
+                                                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:47: Misplaced \crcr.
+\IEEEauthorblockN ...lockNinterlinespace }#1\crcr 
+                                                  
+l.47 ...{5\textsuperscript{th} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:51: Misplaced \cr.
+\@IEEEauthorblockAtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockAtops...
+l.51 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:51: Misplaced \noalign.
+\@IEEEauthorblockAtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockAtops...
+l.51 email address or ORCID}
+                            
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:51: Misplaced \crcr.
+\IEEEauthorblockA ...lockAinterlinespace }#1\crcr 
+                                                  \ifCLASSOPTIONtransmag \gd...
+l.51 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:53: Misplaced \cr.
+\@IEEEauthorblockNtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockNtops...
+l.53 ...{6\textsuperscript{th} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:53: Misplaced \noalign.
+\@IEEEauthorblockNtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockNtops...
+l.53 ...{6\textsuperscript{th} Given Name Surname}
+                                                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:53: Misplaced \crcr.
+\IEEEauthorblockN ...lockNinterlinespace }#1\crcr 
+                                                  
+l.53 ...{6\textsuperscript{th} Given Name Surname}
+                                                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:57: Misplaced \cr.
+\@IEEEauthorblockAtopspaceline ->\cr 
+                                     \noalign {\vskip \@IEEEauthorblockAtops...
+l.57 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:57: Misplaced \noalign.
+\@IEEEauthorblockAtopspaceline ->\cr \noalign 
+                                              {\vskip \@IEEEauthorblockAtops...
+l.57 email address or ORCID}
+                            
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./_region_.tex:57: Misplaced \crcr.
+\IEEEauthorblockA ...lockAinterlinespace }#1\crcr 
+                                                  \ifCLASSOPTIONtransmag \gd...
+l.57 email address or ORCID}
+                            
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./_region_.tex:72: Preview: Snippet 1 started.
+<-><->
+      
+l.72 \section
+             {Introduction}
+Not a real error.
+
+Preview: Tightpage -32891 -32891 32891 32891
+./_region_.tex:72: Preview: Snippet 1 ended.(435811+8188x16515072).
+<-><->
+      
+l.72 \section{Introduction}
+                           
+Not a real error.
+
+[1
+
+]
+./_region_.tex:76: Preview: Snippet 2 started.
+<-><->
+      
+l.76 \subsection
+                {Maintaining the Integrity of the Specifications}
+Not a real error.
+
+./_region_.tex:76: Preview: Snippet 2 ended.(448587+135328x16515072).
+<-><->
+      
+l.76 ...ining the Integrity of the Specifications}
+                                                  
+Not a real error.
+
+[2
+
+]
+./_region_.tex:86: Preview: Snippet 3 started.
+<-><->
+      
+l.86 \section
+             {Prepare Your Paper Before Styling}
+Not a real error.
+
+./_region_.tex:86: Preview: Snippet 3 ended.(444988+8188x16515072).
+<-><->
+      
+l.86 \section{Prepare Your Paper Before Styling}
+                                                
+Not a real error.
+
+[3
+
+]
+
+LaTeX Warning: Reference `AA' on page 2 undefined on input line 89.
+
+
+LaTeX Warning: Reference `FAT' on page 2 undefined on input line 89.
+
+./_region_.tex:96: Preview: Snippet 4 started.
+<-><->
+      
+l.96 \subsection
+                {Abbreviations and Acronyms}\label{AA}
+Not a real error.
+
+./_region_.tex:96: Preview: Snippet 4 ended.(448587+135328x16515072).
+<-><->
+      
+l.96 \subsection{Abbreviations and Acronyms}
+                                            \label{AA}
+Not a real error.
+
+[4
+
+]
+./_region_.tex:102: Preview: Snippet 5 started.
+<-><->
+      
+l.102 \subsection
+                 {Units}
+Not a real error.
+
+./_region_.tex:102: Preview: Snippet 5 ended.(430240+11791x16515072).
+<-><->
+      
+l.102 \subsection{Units}
+                        
+Not a real error.
+
+[5
+
+]
+./_region_.tex:110: Preview: Snippet 6 started.
+<-><->
+      
+l.110 \subsection
+                 {Equations}
+Not a real error.
+
+./_region_.tex:110: Preview: Snippet 6 ended.(439084+135328x16515072).
+<-><->
+      
+l.110 \subsection{Equations}
+                            
+Not a real error.
+
+[6
+
+]
+./_region_.tex:117: Preview: Snippet 7 started.
+<-><->
+      
+l.117 \begin{equation}
+                      
+Not a real error.
+
+./_region_.tex:119: Preview: Snippet 7 ended.(582542+0x16515072).
+<-><->
+      
+l.119 \end{equation}
+                    
+Not a real error.
+
+[7
+
+]
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 123.
+
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 123.
+
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 123.
+
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 124.
+
+./_region_.tex:126: Preview: Snippet 8 started.
+<-><->
+      
+l.126 \subsection
+                 {\LaTeX-Specific Advice}
+Not a real error.
+
+./_region_.tex:126: Preview: Snippet 8 ended.(448587+144504x16515072).
+<-><->
+      
+l.126 \subsection{\LaTeX-Specific Advice}
+                                         
+Not a real error.
+
+[8
+
+]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 128.
+ (c:/texlive/2025/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+./_region_.tex:163: Preview: Snippet 9 started.
+<-><->
+      
+l.163 \subsection
+                 {Some Common Mistakes}\label{SCM}
+Not a real error.
+
+./_region_.tex:163: Preview: Snippet 9 ended.(448587+11791x16515072).
+<-><->
+      
+l.163 \subsection{Some Common Mistakes}
+                                       \label{SCM}
+Not a real error.
+
+[9
+
+]
+./_region_.tex:166: Preview: Snippet 10 started.
+<-><->
+      
+l.166 ...ubscript for the permeability of vacuum $
+                                                  \mu_{0}$, and other common...
+Not a real error.
+
+./_region_.tex:166: Preview: Snippet 10 ended.(282168+127431x688889).
+<-><->
+      
+l.166 ... for the permeability of vacuum $\mu_{0}$
+                                                  , and other common scienti...
+Not a real error.
+
+[10]
+
+LaTeX Warning: Citation `b7' on page 3 undefined on input line 177.
+
+./_region_.tex:179: Preview: Snippet 11 started.
+<-><->
+      
+l.179 \subsection
+                 {Authors and Affiliations}\label{AAA}
+Not a real error.
+
+./_region_.tex:179: Preview: Snippet 11 ended.(448587+135328x16515072).
+<-><->
+      
+l.179 \subsection{Authors and Affiliations}
+                                           \label{AAA}
+Not a real error.
+
+[11
+
+]
+./_region_.tex:188: Preview: Snippet 12 started.
+<-><->
+      
+l.188 \subsection
+                 {Identify the Headings}\label{ITH}
+Not a real error.
+
+./_region_.tex:188: Preview: Snippet 12 ended.(448587+135328x16515072).
+<-><->
+      
+l.188 \subsection{Identify the Headings}
+                                        \label{ITH}
+Not a real error.
+
+[12
+
+]
+./_region_.tex:207: Preview: Snippet 13 started.
+<-><->
+      
+l.207 \subsection
+                 {Figures and Tables}\label{FAT}
+Not a real error.
+
+./_region_.tex:207: Preview: Snippet 13 ended.(448587+135328x16515072).
+<-><->
+      
+l.207 \subsection{Figures and Tables}
+                                     \label{FAT}
+Not a real error.
+
+[13
+
+]
+./_region_.tex:208: Preview: Snippet 14 started.
+<-><->
+      
+l.208 \paragraph
+                {Positioning Figures and Tables} Place figures and tables at...
+Not a real error.
+
+./_region_.tex:208: Preview: Snippet 14 ended.(448587+135328x9744288).
+<-><->
+      
+l.208 \paragraph{Positioning Figures and Tables}
+                                                 Place figures and tables at...
+Not a real error.
+
+[14
+
+]
+
+LaTeX Warning: Reference `fig' on page 3 undefined on input line 213.
+
+./_region_.tex:215: Preview: Snippet 15 started.
+<-><->
+      
+l.215 \begin{table}
+                   [htbp]
+Not a real error.
+
+./_region_.tex:230: Preview: Snippet 15 ended.(3420975+1087897x16515072).
+<-><->
+      
+l.230 \end{table}
+                 
+Not a real error.
+
+[15
+
+
+]
+./_region_.tex:232: Preview: Snippet 16 started.
+<-><->
+      
+l.232 \begin{figure}
+                    [htbp]
+Not a real error.
+
+
+./_region_.tex:233: LaTeX Error: Cannot determine size of graphic in fig1.png (no BoundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.233 \centerline{\includegraphics{fig1.png}}
+                                             
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: fig1.png Graphic file (type eps)
+<fig1.png>
+./_region_.tex:236: Preview: Snippet 16 ended.(5915934+113504x16515072).
+<-><->
+      
+l.236 \end{figure}
+                  
+Not a real error.
+
+[16
+
+
+]
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 244.
+ (c:/texlive/2025/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 244.
+
+./_region_.tex:248: Preview: Snippet 17 started.
+<-><->
+      
+l.248 \section
+              *{Acknowledgment}
+Not a real error.
+
+./_region_.tex:248: Preview: Snippet 17 ended.(444988+8188x16515072).
+<-><->
+      
+l.248 \section*{Acknowledgment}
+                               
+Not a real error.
+
+[17]
+./_region_.tex:252: Preview: Snippet 18 started.
+<-><->
+      
+l.252 G.) thanks $
+                  \ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put s...
+Not a real error.
+
+./_region_.tex:252: Preview: Snippet 18 ended.(69176+0x764583).
+<-><->
+      
+l.252 G.) thanks $\ldots$
+                         ''. Instead, try ``R. B. G. thanks$\ldots$''. Put s...
+Not a real error.
+
+[18]
+./_region_.tex:252: Preview: Snippet 19 started.
+<-><->
+      
+l.252 ...ldots$''. Instead, try ``R. B. G. thanks$
+                                                  \ldots$''. Put sponsor
+Not a real error.
+
+./_region_.tex:252: Preview: Snippet 19 ended.(69176+0x764583).
+<-><->
+      
+l.252 ...'. Instead, try ``R. B. G. thanks$\ldots$
+                                                  ''. Put sponsor
+Not a real error.
+
+[19]
+./_region_.tex:255: Preview: Snippet 20 started.
+<-><->
+      
+l.255 \section
+              *{References}
+Not a real error.
+
+./_region_.tex:255: Preview: Snippet 20 ended.(435811+8188x16515072).
+<-><->
+      
+l.255 \section*{References}
+                           
+Not a real error.
+
+[20]
+
+LaTeX Warning: Citation `b1' on page 3 undefined on input line 257.
+
+
+LaTeX Warning: Citation `b2' on page 3 undefined on input line 258.
+
+
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 259.
+
+
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 259.
+
+
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 259.
+
+
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 260.
+
+./_region_.tex:260: Preview: Snippet 21 started.
+<-><->
+      
+l.260 ...ce: ``Reference \cite{b3} was the first $
+                                                  \ldots$''
+Not a real error.
+
+./_region_.tex:260: Preview: Snippet 21 ended.(69176+0x764583).
+<-><->
+      
+l.260 ...eference \cite{b3} was the first $\ldots$
+                                                  ''
+Not a real error.
+
+[21]
+
+LaTeX Warning: Citation `b4' on page 3 undefined on input line 268.
+
+
+LaTeX Warning: Citation `b5' on page 3 undefined on input line 269.
+
+
+LaTeX Warning: Citation `b6' on page 3 undefined on input line 274.
+
+./_region_.tex:276: Preview: Snippet 22 started.
+<-><->
+      
+l.276 \begin{thebibliography}{00}
+                                 
+Not a real error.
+
+./_region_.tex:276: Preview: Snippet 22 ended.(435811+8188x16515072).
+<-><->
+      
+l.276 \begin{thebibliography}{00}
+                                 
+Not a real error.
+
+[22]
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-14>
+ ***********
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4080 strings out of 467538
+ 64099 string characters out of 5423723
+ 499644 words of memory out of 5000000
+ 32948 multiletter control sequences out of 15000+600000
+ 660504 words of font info for 123 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 58i,12n,65p,923b,348s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on _region_.dvi (22 pages, 5736 bytes).
