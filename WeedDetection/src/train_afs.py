@@ -2,14 +2,27 @@ from ultralytics import YOLO
 import torch
 
 
-model = YOLO("yolov8n.pt")  
+def main():
+    model = YOLO("yolov8n.pt") #loads in the pretrained model for yolov8
 
-# Train on your weed dataset
-model.train(
-    data="data.yaml", 
-    epochs=100,
-    imgsz=640,
-    batch=16,
-    device=0,      
-    workers=8
-)
+    #We are going to train the model off of weed.v1i.yolov8
+
+    folder = "dataset"
+    print(f"We are training the model from {folder} directory")
+    model.train(
+        data = "./" + folder + "/data.yaml", # We are getting the data from weed.v1i.yolov8
+        epochs = 20, #more epochs, longer it takes to run 
+        workers = 8, #more workers, faster
+        imgsz = 640, #size to adjust image
+        batch = 16, 
+        device = 0 #device 0 graphics card
+    )
+
+    perfomance = model.val()
+
+    results = model("../test/weed_test.jpeg")
+    results[0].show()
+
+
+if __name__ == "__main__":
+    main()
