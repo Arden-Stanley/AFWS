@@ -1,6 +1,11 @@
 from ultralytics import YOLO
 import torch
 
+def send_signal():
+    print(f"Sending high signal now..")
+
+def pi_camera_active():
+
 
 def main():
     img = "img.jpg"
@@ -9,6 +14,8 @@ def main():
     result_example = weed_results[0]
     weed_results[0].show()
     print(f"The amount of bounding boxes in this picture: {len(result_example.boxes)}")
+    # Run pi camera and get results per image 
+    # Get coordinates of bounding box, move target to location and spray 
 
 
 
