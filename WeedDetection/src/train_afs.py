@@ -20,9 +20,6 @@ def main():
 
     perfomance = model.val()
 
-    results = model("../test/weed_test.jpeg")
-    results[0].show()
-
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,7 @@ def pi_camera_active():
         single_frame = current_results[0].plot() #plots the data in the terminal 
 
         cv2.imshow("yolo", single_frame) #Displays the single image in the window 
-
+    
         k= cv2.waitKey(1) & 0xFF
         if k == ord('q'): # press q to quit 
             break
@@ -37,6 +37,10 @@ def test():
     # Run pi camera and get results per image 
     # Get coordinates of bounding box, move target to location and spray 
 
+def test_face():
+    # open the window
+    # rasberry pi is going to find face, send command to arduino to light up led 
+    
 def main():
     pi_camera_active()
 
