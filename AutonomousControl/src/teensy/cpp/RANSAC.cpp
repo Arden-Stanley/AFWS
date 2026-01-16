@@ -82,6 +82,7 @@ void RANSAC::RANSACLoop(const std::vector<points>& points)
 
 //Computes distance from the origin (Which is the LiDAR) to the line.
 //Formula is d = |C|/sqr(A^2 + B^2)
+//Since we're comparing it to the origin it just simplifies to |C|
 void RANSAC::distancetoLine(){
   distance = fabs(bestLine.c);
 }
