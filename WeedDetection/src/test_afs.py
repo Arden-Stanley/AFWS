@@ -37,12 +37,55 @@ def test():
     # Run pi camera and get results per image 
     # Get coordinates of bounding box, move target to location and spray 
 
+# This will be used to test the face 
 def test_face():
-    # open the window
-    # rasberry pi is going to find face, send command to arduino to light up led 
-    
+
+
+    #TO DO:
+
+    # CAPTURE THIS DATA AND STORE IN CSV
+    ## Get the normal values as well 
+
+    # ANNOTATE A FACE AND TRAIN IT WITH train.afs.py 
+    # TEST THE FACE AND RUN AN ARDUINO SCRIPT TO LIGHT UP LED
+
+
+    #old_face_model = YOLO("runs/detect/train23/weights/best.pt")
+    face_model = YOLO("yolov8n.pt") #Original class, we don't have the faces yet 
+    face_camera = cv2.VideoCapture(0)
+
+    while face_camera.isOpened():
+        verify, frame = face_camera.read()
+        if not verify:
+            break
+
+        current_results = face_model(frame, conf=.50)
+
+        # This will take each invidiual frame that has been predicted with face_model and draw bounding boxes around them 
+        for result in current_results:
+            boxes = result.boxes
+            for box in boxes:
+                x1, y1, x2, y2 = map(int, box.xyxy[0]) # Takes the cooridnates out of a tensor and then changes the value from float to int for cv2
+                confidence = box.conf[0].item() # confidence for the identified class
+
+                class_id = int(box.cls[0]) #Class id to use with the class_name 
+                class_name = face_model.names[class_id]
+                label = f'{class_name}, {confidence}, {x1}, {y1}' # THis is the label that is above the bounding box
+                
+                cv2.rectangle(frame, (x1,y1), (x2,y2), (0,100,0), 2) #This creates our own custom bounding box, using this instead of .plot
+                cv2.putText(frame, label, (x1,y1-10), cv2.FONT_HERSHEY_SIMPLEX, .5, (0,255,0), 2) #Puts the label above the box 
+
+        cv2.imshow("yolo", frame)
+
+        k= cv2.waitKey(1) & 0xFF
+        if k == ord('q'): # press q to quit 
+            break
+    face_camera.release()
+    face_camera.destroyAllWindows()
+
 def main():
-    pi_camera_active()
+    #pi_camera_active()
+    test_face()
 
 
 
