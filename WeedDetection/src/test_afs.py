@@ -50,8 +50,8 @@ def test_face():
     # TEST THE FACE AND RUN AN ARDUINO SCRIPT TO LIGHT UP LED
 
 
-    #old_face_model = YOLO("runs/detect/train23/weights/best.pt")
-    face_model = YOLO("yolov8n.pt") #Original class, we don't have the faces yet 
+    face_model = YOLO("runs/detect/train26/weights/best.pt")
+    #face_model = YOLO("yolov8n.pt") #Original class, we don't have the faces yet 
     face_camera = cv2.VideoCapture(0)
 
     while face_camera.isOpened():
@@ -71,7 +71,7 @@ def test_face():
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
                 label = f'{class_name}, {confidence}, {x1}, {y1}' # THis is the label that is above the bounding box
-                
+
                 cv2.rectangle(frame, (x1,y1), (x2,y2), (0,100,0), 2) #This creates our own custom bounding box, using this instead of .plot
                 cv2.putText(frame, label, (x1,y1-10), cv2.FONT_HERSHEY_SIMPLEX, .5, (0,255,0), 2) #Puts the label above the box 
 
