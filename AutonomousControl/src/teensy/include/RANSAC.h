@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <math.h>
+#include <cmath>
+#include <deque>
 
 /*RANSAC DESCRIPTION
 STEPS:
@@ -24,6 +26,7 @@ const int MIN_INLIERS = 20;
 struct points {
   float x;
   float y;
+  bool isValid;
 };
 
 struct plane {
@@ -35,7 +38,7 @@ struct plane {
 class RANSAC {
 
   public: 
-    void cartesianConversion(const std::vector<float>& angles, const std::vector<float>& ranges, std::vector<points>& points);
+    void cartesianConversion(const std::deque<float>& angles, const std::deque<float>& ranges, std::vector<points>& points);
     plane fitter(const points& p1, const points& p2);
     float pointLine(const plane& line, const points& p);
     void RANSACLoop(const std::vector<points>& points);

@@ -1,6 +1,8 @@
 #ifndef AGVPINS_H
 #define AGVPINS_H
 
+#include <Arduino.h>
+
 class pins {
   public:
     const int PWM1 = 9;
