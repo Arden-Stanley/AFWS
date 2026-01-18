@@ -1,13 +1,15 @@
-#include "RANSAC.h"
+#include "../include/RANSAC.h"
 
 //Converts the distance and angle (r and thada) to x and y to be used in a 2-D plane.
-void RANSAC::cartesianConversion(const std::vector<float>& angles, const std::vector<float>& distances, std::vector<points>& point){
+void RANSAC::cartesianConversion(const std::deque<float>& angles, const std::deque<float>& distances, std::vector<points>& point){
   point.clear();
   points p;
 
   for(int i = 0; i < angles.size(); i++){
     float r = distances[i];
-    float o = angles[i];
+
+    //sine apparently needs radians instead of degrees to function properly
+    float o = angles[i] * (M_PI / 180.0f);
 
     if (r <= 50.0f)
       continue;
@@ -82,11 +84,11 @@ void RANSAC::RANSACLoop(const std::vector<points>& points)
 
 //Computes distance from the origin (Which is the LiDAR) to the line.
 //Formula is d = |C|/sqr(A^2 + B^2)
-//Since we're comparing it to the origin it just simplifies to |C|
 void RANSAC::distancetoLine(){
   distance = fabs(bestLine.c);
 }
 
+//Gonna need editing, probably will use it in tandem with the PID for redundancy
 void RANSAC::headingAngle(float targetDistance){
   headingError = atan2(bestLine.a, -bestLine.b);
   distanceError = targetDistance - distance;
