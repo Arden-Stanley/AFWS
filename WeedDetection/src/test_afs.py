@@ -2,6 +2,7 @@ import cv2
 from ultralytics import YOLO
 import torch
 
+
 def send_signal():
     print(f"Sending high signal now..")
 
@@ -38,6 +39,11 @@ def test():
     # Get coordinates of bounding box, move target to location and spray 
 
 # This will be used to test the face 
+
+def save_to_file(x1,y1):
+    with open("test.txt", "a") as info:
+        info.write(f"{x1}, {y1} \n")
+
 def test_face():
 
 
@@ -49,9 +55,14 @@ def test_face():
     # ANNOTATE A FACE AND TRAIN IT WITH train.afs.py 
     # TEST THE FACE AND RUN AN ARDUINO SCRIPT TO LIGHT UP LED
 
+    value = 27
+    select = input("Would you like to use pretrained or custom trained model? 1 - Pretrain | 2 - Custom")
+    
+    if int(select) == 2:
+        face_model = YOLO(f"runs/detect/train{value}/weights/best.pt")
+    else:
+        face_model = YOLO("yolov8n.pt") #Original class, we don't have the faces yet 
 
-    face_model = YOLO("runs/detect/train26/weights/best.pt")
-    #face_model = YOLO("yolov8n.pt") #Original class, we don't have the faces yet 
     face_camera = cv2.VideoCapture(0)
 
     while face_camera.isOpened():
@@ -59,15 +70,21 @@ def test_face():
         if not verify:
             break
 
-        current_results = face_model(frame, conf=.50)
+        current_results = face_model(frame, conf=.50, verbose = False)
 
         # This will take each invidiual frame that has been predicted with face_model and draw bounding boxes around them 
         for result in current_results:
             boxes = result.boxes
             for box in boxes:
+               
                 x1, y1, x2, y2 = map(int, box.xyxy[0]) # Takes the cooridnates out of a tensor and then changes the value from float to int for cv2
                 confidence = box.conf[0].item() # confidence for the identified class
+                
+                #TEST CASES:
 
+                if y1 > 250: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    save_to_file(x1,y1) # save coordinates to file 
+                    print(f"Weed detected, moving AFS 5 feet forward...")
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
                 label = f'{class_name}, {confidence}, {x1}, {y1}' # THis is the label that is above the bounding box

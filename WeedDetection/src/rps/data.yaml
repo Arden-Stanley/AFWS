@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['Paper', 'Rock', 'Scissors']
+
+roboflow:
+  workspace: afs-1ytpk
+  project: rock-paper-scissors-sxsw-jdlvq
+  version: 1
+  license: Private
+  url: https://universe.roboflow.com/afs-1ytpk/rock-paper-scissors-sxsw-jdlvq/dataset/1

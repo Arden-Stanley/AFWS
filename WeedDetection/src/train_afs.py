@@ -7,7 +7,7 @@ def main():
 
     #We are going to train the model off of weed.v1i.yolov8
 
-    folder = "facetest2"
+    folder = "rps"
     print(f"We are training the model from {folder} directory")
     model.train(
         data = "./" + folder + "/data.yaml", # We are getting the data from weed.v1i.yolov8
