@@ -5,7 +5,7 @@ void RANSAC::cartesianConversion(const std::deque<float>& angles, const std::deq
   point.clear();
   points p;
 
-  for(int i = 0; i < angles.size(); i++){
+  for(size_t i = 0; i < angles.size(); i++){
     float r = distances[i];
 
     //sine apparently needs radians instead of degrees to function properly
@@ -51,9 +51,14 @@ float RANSAC::pointLine(const plane& line, const points& p){
   return fabs(line.a * p.x + line.b * p.y + line.c);
 }
 
-void RANSAC::RANSACLoop(const std::vector<points>& points)
-{
+void RANSAC::RANSACLoop(const std::vector<points>& points) {
   bestInlierCount = 0;
+
+  //Resetting best line each time
+  bestLine.a = 0;
+  bestLine.b = 0;
+  bestLine.c = 0;
+  distance = 0; 
 
   if (points.size() < 2)
     return;
@@ -65,7 +70,7 @@ void RANSAC::RANSACLoop(const std::vector<points>& points)
     if (i1 == i2)
       continue;
 
-    fitter(points[i1], points[i2]);
+    currentLine = fitter(points[i1], points[i2]);
 
     int inlierCount = 0;
 
@@ -76,8 +81,16 @@ void RANSAC::RANSACLoop(const std::vector<points>& points)
     }
 
     if (inlierCount > bestInlierCount) {
-      bestInlierCount = inlierCount;
-      bestLine = currentLine;
+    bestInlierCount = inlierCount;
+    
+    //Makes sure the math is consistent. Without it, a likes to flip between negative and positive.
+      if (currentLine.b < 0) { 
+        bestLine.a = -currentLine.a;
+        bestLine.b = -currentLine.b;
+        bestLine.c = -currentLine.c;
+      } 
+      else 
+        bestLine = currentLine;
     }
   }
 }
@@ -99,7 +112,7 @@ bool RANSAC::lineValidation(){
   if(bestInlierCount < MIN_INLIERS){
     return false;
   }
-  else if(abs(bestLine.c) > 381){ //If the distance from the car to the wall is > 15 inches, the wall isn't correct
+  else if(abs(bestLine.c) > 800){ //If the distance from the car to the wall is > 15 inches, the wall isn't correct
     return false;
   }
   else if(headingError > 0.785f){ //Since normalizing the line put it from 0 to 1, we're using radians. 0.785 = 45 degrees
@@ -107,3 +120,7 @@ bool RANSAC::lineValidation(){
   }
   return true;
 }
+
+
+
+

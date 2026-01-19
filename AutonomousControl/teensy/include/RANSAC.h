@@ -1,6 +1,7 @@
 #ifndef RANSAC_H
 #define RANSAC_H
 
+#include <Arduino.h>
 #include <vector>
 #include <math.h>
 #include <cmath>
@@ -18,9 +19,9 @@ STEPS:
 */
 
 //Going to change this soon
-const int MAX_ITERATIONS = 200;
+const int MAX_ITERATIONS = 400;
 //Everything within a 3 inch thresh-hold of the line will be considered as an inlier
-const float DIST_THRESHOLD = 75; // 75mm = 2.95 inches. 
+const float DIST_THRESHOLD = 30; // 75mm = 2.95 inches. 
 const int MIN_INLIERS = 20; 
 
 struct points {

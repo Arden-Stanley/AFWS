@@ -12,6 +12,10 @@ using namespace std;
 RPLidarC1 lidar(&Serial1);
 RPLidarHealth health;
 
+RPLidarMeasurement m;
+RANSAC ransacRight;
+RANSAC ransacLeft;
+
 StateMachine S;
 
 //Double Ended Queues for both sides of the car that the LiDAR is reading into
@@ -22,12 +26,12 @@ deque<float> rightSideAngles, rightSideDistances;
 //Thresh-hold for how far a wall should be before there needs to be gradual course correction 
 float xsoftThreshhold = 127; //Reads in mm, 127mm = 5in
 
-//Limits the amount in a vector to around 1-2 seconds worth of LiDAR data.
+//Limits the amount in a deque to around 3-5 seconds worth of LiDAR data.
 // 18000 (angle and distance) -> ~5 seconds. 
 // 9000 per side, with 4500 split between angle in distance.
 static size_t dequeLimit = 4500;
 
-bool obstacleDetected = false;
+//bool obstacleDetected = false;
 
 void setup() {
   Serial.begin(115200);
@@ -70,80 +74,90 @@ void setup() {
 }
 
 void loop() {
+  // Vectors to hold the converted LiDAR points
   vector<points> rightCartesianConverted;
   vector<points> leftCartesianConverted;
 
-  RPLidarMeasurement m;
-  RANSAC ransacRight;
-  RANSAC ransacLeft;
   if (!lidar.get_measurement(&m)) return;
 
-  //Detects the start of the rotation
-  if(m.start_flag){
-    while(lidar.is_scanning()){
-    //Checks if detect angles are within a certain thresh-hold.
-    //0 -> 180 degrees is right side
-    //181 -> 359 is left side.
-      if(m.angle > 0 && m.angle <= 180){
-        rightSideAngles.push_back(m.angle);
-        rightSideDistances.push_back(m.distance);
-        ransacRight.cartesianConversion(rightSideAngles, rightSideDistances, rightCartesianConverted);
-      }
-      else if(m.angle > 180 && m.angle <= 359){
-        leftSideAngles.push_back(m.angle);
-        leftSideDistances.push_back(m.distance);
-        ransacLeft.cartesianConversion(leftSideAngles, leftSideDistances, leftCartesianConverted);
-      }
+  //Checks if detect angles are within a certain thresh-hold.
+  //45 -> 135 degrees is right side
+  //225 -> 315 is left side.
+  if (m.angle > 45 && m.angle <= 135) {
+    rightSideAngles.push_back(m.angle);
+    rightSideDistances.push_back(m.distance);
+  } 
+  else if (m.angle > 225 && m.angle <= 315) {
+    leftSideAngles.push_back(m.angle);
+    leftSideDistances.push_back(m.distance);
+  }
 
-    //If the size of one of the angle deques is greater than the dequeLimit (4500)...
-    //Start a rolling buffer that will delete the beginning of the deque and add another data point.
-      if(rightSideAngles.size() >= dequeLimit || leftSideAngles.size() >= dequeLimit){
-        rightSideAngles.pop_front();
-        rightSideDistances.pop_front();
-        leftSideAngles.pop_front();
-        leftSideDistances.pop_front();
-      }
+  //If the size of one of the angle deques is greater than the dequeLimit (4500)...
+  //Start a rolling buffer that will delete the beginning of the deque and add another data point.
+  if (rightSideAngles.size() >= dequeLimit || leftSideAngles.size() >= dequeLimit) {
+    rightSideAngles.pop_front();
+    rightSideDistances.pop_front();
+    leftSideAngles.pop_front();
+    leftSideDistances.pop_front();
+  }
 
-    //Puts the converted LiDAR points into the RANSAC process
+  // This will only start the RANSAC and STATEMACHINE process whennever a rotation starts 
+  if (m.start_flag) {
+    // Wait until there is at-least 50 data points for both sides
+    if (leftSideAngles.size() > 50 || rightSideAngles.size() > 50) {
+    // Clear vectors
+      leftCartesianConverted.clear();
+      rightCartesianConverted.clear();
+
+    // Convert r and thada to x and y for RANSAC
+      ransacRight.cartesianConversion(rightSideAngles, rightSideDistances, rightCartesianConverted);
+      ransacLeft.cartesianConversion(leftSideAngles, leftSideDistances, leftCartesianConverted);
+
+    // Try to find best-fit line through RANSACLoop
       ransacLeft.RANSACLoop(leftCartesianConverted);
       ransacRight.RANSACLoop(rightCartesianConverted);
 
-    //Calculates the distance from the origin (the LiDAR) to the RANSAC calculated line
+    // Calculate distance from origin (the car) to the RANSAC lines
       ransacRight.distancetoLine();
       float rightDistance = ransacRight.distance;
 
       ransacLeft.distancetoLine();
       float leftDistance = ransacLeft.distance;
 
-      float lineDifference = fabs(rightDistance - leftDistance);
+      // Calculation for finding the distance between RANSAC lines. Use this for PID as an error to correct.
+      float lineDifference = rightDistance - leftDistance;
 
-    //Calculates the heading angle and error in the distance from the soft threshhold to the previously calculated distance
-    //Need to incorporate this with PID for added autonomy
-      ransacRight.headingAngle(xsoftThreshhold);
-      ransacLeft.headingAngle(xsoftThreshhold);
+      // Determines length for how long the car remains stopped.
+      static unsigned long stopStartTime = 0;
 
-    //Checks if the RANSAC found line is valid
-      bool rightValidation = ransacRight.lineValidation();
-      bool leftValidation = ransacLeft.lineValidation();
-
-      StateMachine S;
-      S.STATE = S.STOP;
-
-    // Decided that PID (Proportional Integral Derivative) control is the best option.
-      switch(S.STATE){
-        //Stop, wait for 5 seconds, check line validation. If valid, switch to inbetween_rows.
+      switch(S.STATE) {
+      //Stop, wait for 5 seconds, check line validation. If valid, switch to inbetween_rows.
         case S.STOP:
-          S.stop();
-          delay(5000);
-          if(rightValidation == 1 || leftValidation == 1){
-            S.STATE = S.INBETWEEN_ROWS;
+          S.stop(); 
+          if (stopStartTime == 0) 
+            stopStartTime = millis(); 
+
+          if (millis() - stopStartTime > 5000) {
+            if (ransacRight.lineValidation() || ransacLeft.lineValidation()) {
+              S.STATE = S.INBETWEEN_ROWS;
+              stopStartTime = 0; 
+              Serial.println("WALL FOUND: SWITCHING TO INBETWEEN_ROWS");
+            }
           }
-          break;
+        break;
 
         case S.INBETWEEN_ROWS:
+        // Use the difference between walls to steer via PID (inside the state machine)
           S.inbetween_rows(lineDifference);
-
+          break;
       }
-    }  
-  }    
+    }
+  }
 }
+
+
+
+
+
+
+
