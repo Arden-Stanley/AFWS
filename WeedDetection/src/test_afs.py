@@ -47,17 +47,9 @@ def save_to_file(x1,y1):
         info.write(f"{x1}, {y1} \n")
 
 
-def arduinoSignal(isDetected):
-    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-    ser.flush()
-    i = 0
-    data_to_send = str(i)
-    ser.write(b"0\n")
-
+def arduinoSignal():
+    ser.write('0').encode('utf-8')
     print(f"Sent: {data_to_send.strip()}")
-
-    time.sleep(23)
-    isDetected = False
 
 
 
@@ -92,7 +84,9 @@ def test_face(isDetected):
 
         current_results = face_model(frame, conf=.50, verbose = False)
         isDetected = False # save coordinates to file
-
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser.flush()
+        time.sleep(2) #Serial communication for PI and Arduino
         # This will take each invidiual frame that has been predicted with face_model and draw bounding boxes around them 
         for result in current_results:
             boxes = result.boxes
@@ -102,14 +96,15 @@ def test_face(isDetected):
                 confidence = box.conf[0].item() # confidence for the identified class
                 
                 #TEST CASES:
-            
-                if y1 > 250 and not isDetected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                hand_was_detected = False
+                if y1 > 250 and not hand_was_detected #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected = True
                     save_to_file(x1,y1)
-                    isDetected = True # save coordinates to file
                     print("Test")
                     arduinoSignal(isDetected)
-                    
                     print(f"Weed detected, moving AFS 5 feet forward...")
+                elif y1 <= 249
+                    hand_was_detected = False
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
                 label = f'{class_name}, {confidence}, {x1}, {y1}' # THis is the label that is above the bounding box
@@ -136,5 +131,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
