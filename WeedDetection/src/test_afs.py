@@ -1,6 +1,8 @@
 import cv2
 from ultralytics import YOLO
 import torch
+import serial
+import time
 
 
 def send_signal():
@@ -44,7 +46,25 @@ def save_to_file(x1,y1):
     with open("test.txt", "a") as info:
         info.write(f"{x1}, {y1} \n")
 
-def test_face():
+
+def arduinoSignal(isDetected):
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.flush()
+    i = 0
+    data_to_send = str(i)
+    ser.write(b"0\n")
+
+    print(f"Sent: {data_to_send.strip()}")
+
+    time.sleep(23)
+    isDetected = False
+
+
+
+
+
+
+def test_face(isDetected):
 
 
     #TO DO:
@@ -71,6 +91,7 @@ def test_face():
             break
 
         current_results = face_model(frame, conf=.50, verbose = False)
+        isDetected = False # save coordinates to file
 
         # This will take each invidiual frame that has been predicted with face_model and draw bounding boxes around them 
         for result in current_results:
@@ -81,9 +102,13 @@ def test_face():
                 confidence = box.conf[0].item() # confidence for the identified class
                 
                 #TEST CASES:
-
-                if y1 > 250: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    save_to_file(x1,y1) # save coordinates to file 
+            
+                if y1 > 250 and not isDetected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    save_to_file(x1,y1)
+                    isDetected = True # save coordinates to file
+                    print("Test")
+                    arduinoSignal(isDetected)
+                    
                     print(f"Weed detected, moving AFS 5 feet forward...")
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
@@ -102,10 +127,14 @@ def test_face():
 
 def main():
     #pi_camera_active()
-    test_face()
+    isDetected = False
+
+    test_face(isDetected)
 
 
 
 
 if __name__ == "__main__":
     main()
+
+
