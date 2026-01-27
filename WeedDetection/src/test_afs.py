@@ -47,8 +47,9 @@ def save_to_file(x1,y1):
         info.write(f"{x1}, {y1} \n")
 
 
-def arduinoSignal():
-    ser.write('0').encode('utf-8')
+def arduinoSignal(ser):
+    data_to_send = '0'
+    ser.write(data_to_send.encode('utf-8'))
     print(f"Sent: {data_to_send.strip()}")
 
 
@@ -77,6 +78,13 @@ def test_face(isDetected):
 
     face_camera = cv2.VideoCapture(0)
 
+    try:
+        ser = serial.Serial('COM10', 9600, timeout = 1)
+        time.sleep(2)
+    except serial.SerialException as e:
+        print(f"There was an error opening serial port: {e} ")
+        exit()
+
     while face_camera.isOpened():
         verify, frame = face_camera.read()
         if not verify:
@@ -84,9 +92,8 @@ def test_face(isDetected):
 
         current_results = face_model(frame, conf=.50, verbose = False)
         isDetected = False # save coordinates to file
-        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-        ser.flush()
-        time.sleep(2) #Serial communication for PI and Arduino
+
+        #ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         # This will take each invidiual frame that has been predicted with face_model and draw bounding boxes around them 
         for result in current_results:
             boxes = result.boxes
@@ -97,13 +104,13 @@ def test_face(isDetected):
                 
                 #TEST CASES:
                 hand_was_detected = False
-                if y1 > 250 and not hand_was_detected #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                if y1 > 250 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
                     hand_was_detected = True
                     save_to_file(x1,y1)
                     print("Test")
-                    arduinoSignal(isDetected)
+                    arduinoSignal(ser)
                     print(f"Weed detected, moving AFS 5 feet forward...")
-                elif y1 <= 249
+                elif y1 <= 249:
                     hand_was_detected = False
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
