@@ -42,19 +42,24 @@ def test():
 
 # This will be used to test the face 
 
-def save_to_file(x1,y1):
+def save_to_file(x1,y1, name):
     with open("test.txt", "a") as info:
-        info.write(f"{x1}, {y1} \n")
+        info.write(f"Cell: {name} | X: {x1}, Y:{y1} \n")
 
 
-def arduinoSignal(ser):
-    data_to_send = '0'
+def arduinoSignal(ser, a):
+    data_to_send = a
     ser.write(data_to_send.encode('utf-8'))
     print(f"Sent: {data_to_send.strip()}")
 
-
-
-
+# Going to use this class to separate the frame into cells 
+class Grid:
+    def __init__(self,cell_name,x1_axis,x2_axis,y1_axis,y2_axis):
+        self.cell_name = cell_name
+        self.x1_axis = x1_axis
+        self.x2_axis = x2_axis
+        self.y1_axis = y1_axis
+        self.y2_axis = y2_axis
 
 
 def test_face(isDetected):
@@ -102,15 +107,41 @@ def test_face(isDetected):
                 x1, y1, x2, y2 = map(int, box.xyxy[0]) # Takes the cooridnates out of a tensor and then changes the value from float to int for cv2
                 confidence = box.conf[0].item() # confidence for the identified class
                 
+                bounding_x = x1 + x2 / 2
+                bounding_y = y1 + y2 / 2
+
+                # Replace with variables for ease-of-use
+                cell_01 = Grid("cell-01", 0, 90, 270, 360)
+                cell_02 = Grid("cell-02", 91, 180, 270, 360)
+                cell_03 = Grid("cell-03", 181, 270, 270, 360)
+                cell_04 = Grid("cell-04", 271, 360, 270, 360)
+                p = [cell_01, cell_02, cell_03, cell_04]
+
                 #TEST CASES:
                 hand_was_detected = False
-                if y1 > 250 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                
+                #Change the hand_was_detected to a bunch of booleans for each specific cell
+                if bounding_y > p.cell_01.y1 and bounding_x > p.cell_01.x1 and bounding_x < p.cell_01.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
                     hand_was_detected = True
-                    save_to_file(x1,y1)
-                    print("Test")
-                    arduinoSignal(ser)
+                    save_to_file(x1,y1, "Grid 1")
+                    arduinoSignal(ser, '0')
                     print(f"Weed detected, moving AFS 5 feet forward...")
-                elif y1 <= 249:
+                if bounding_y > p.cell_02.y1 and bounding_x > p.cell_02.x1 and bounding_x < p.cell_02.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected = True
+                    save_to_file(x1,y1, "Grid 1")
+                    arduinoSignal(ser, '0')
+                    print(f"Weed detected, moving AFS 5 feet forward...")
+                if bounding_y > p.cell_03.y1 and bounding_x > p.cell_03.x1 and bounding_x < p.cell_03.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected = True
+                    save_to_file(x1,y1, "Grid 1")
+                    arduinoSignal(ser, '0')
+                    print(f"Weed detected, moving AFS 5 feet forward...")
+                if bounding_y > p.cell_04.y1 and bounding_x > p.cell_04.x1 and bounding_x < p.cell_04.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected = True
+                    save_to_file(x1,y1, "Grid 1")
+                    arduinoSignal(ser, '0')
+                    print(f"Weed detected, moving AFS 5 feet forward...")
+                elif bounding_y<= 249:
                     hand_was_detected = False
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
