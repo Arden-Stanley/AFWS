@@ -129,17 +129,17 @@ def test_face(isDetected):
                 if bounding_y > p.cell_02.y1 and bounding_x > p.cell_02.x1 and bounding_x < p.cell_02.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
                     hand_was_detected = True
                     save_to_file(x1,y1, "Grid 1")
-                    arduinoSignal(ser, '0')
+                    arduinoSignal(ser, '1')
                     print(f"Weed detected, moving AFS 5 feet forward...")
                 if bounding_y > p.cell_03.y1 and bounding_x > p.cell_03.x1 and bounding_x < p.cell_03.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
                     hand_was_detected = True
                     save_to_file(x1,y1, "Grid 1")
-                    arduinoSignal(ser, '0')
+                    arduinoSignal(ser, '2')
                     print(f"Weed detected, moving AFS 5 feet forward...")
                 if bounding_y > p.cell_04.y1 and bounding_x > p.cell_04.x1 and bounding_x < p.cell_04.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
                     hand_was_detected = True
                     save_to_file(x1,y1, "Grid 1")
-                    arduinoSignal(ser, '0')
+                    arduinoSignal(ser, '3')
                     print(f"Weed detected, moving AFS 5 feet forward...")
                 elif bounding_y<= 249:
                     hand_was_detected = False
@@ -169,6 +169,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
