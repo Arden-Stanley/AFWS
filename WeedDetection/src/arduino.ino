@@ -30,10 +30,20 @@ void loop() {
 */
 // Testing some things 
 
+// Cell 0-4 Pin locations
+int cell_pin0_01 = 13
+int cell_pin0_02 = 14
+int cell_pin_03 = 15
+int cell_pin_04 = 16
+
 bool isTrue = false;
 void setup() {
  Serial.begin(9600);
- pinMode(13, OUTPUT);
+ pinMode(cell_pin_01, OUTPUT);
+ pinMode(cell_pin_02, OUTPUT);
+ pinMode(cell_pin_03, OUTPUT);
+ pinMode(cell_pin_04, OUTPUT);
+ 
  
 }
 
@@ -51,30 +61,30 @@ void loop() {
       isTrue = true;
       Serial.println("Received");
       if(received_verify == 0){
-        digitalWrite(13, LOW);
+        digitalWrite(cell_pin_01, LOW);
         delay(3000);
-        digitalWrite(13, HIGH);
+        digitalWrite(cell_pin_01, HIGH);
         delay(3000);
         isTrue = false;
       }
       if(received_verify == 1){
-        digitalWrite(13, LOW);
+        digitalWrite(cell_pin_02, LOW);
         delay(3000);
-        digitalWrite(13, HIGH);
+        digitalWrite(cell_pin_02, HIGH);
         delay(3000);
         isTrue = false;
       }
        if(received_verify == 2){
-        digitalWrite(13, LOW);
+        digitalWrite(cell_pin_03, LOW);
         delay(3000);
-        digitalWrite(13, HIGH);
+        digitalWrite(cell_pin_03, HIGH);
         delay(3000);
         isTrue = false;
       }
       if(received_verify == 3){
-        digitalWrite(13, LOW);
+        digitalWrite(cell_pin_04, LOW);
         delay(3000);
-        digitalWrite(13, HIGH);
+        digitalWrite(cell_pin_04, HIGH);
         delay(3000);
         isTrue = false;
       }
