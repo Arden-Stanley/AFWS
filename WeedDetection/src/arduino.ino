@@ -43,11 +43,35 @@ void loop() {
     String verify = Serial.readString();
     int received_verify = verify.toInt();
     
-    
+    // If cases
+   // Let i be an integer for all integers 
+   // Case i - weed in cell-0{i} 
+   
     if(isTrue == false){
       isTrue = true;
       Serial.println("Received");
       if(received_verify == 0){
+        digitalWrite(13, LOW);
+        delay(3000);
+        digitalWrite(13, HIGH);
+        delay(3000);
+        isTrue = false;
+      }
+      if(received_verify == 1){
+        digitalWrite(13, LOW);
+        delay(3000);
+        digitalWrite(13, HIGH);
+        delay(3000);
+        isTrue = false;
+      }
+       if(received_verify == 2){
+        digitalWrite(13, LOW);
+        delay(3000);
+        digitalWrite(13, HIGH);
+        delay(3000);
+        isTrue = false;
+      }
+      if(received_verify == 3){
         digitalWrite(13, LOW);
         delay(3000);
         digitalWrite(13, HIGH);
