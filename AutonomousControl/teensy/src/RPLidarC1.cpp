@@ -3,7 +3,7 @@
  * Based on the Python rplidarc1 library functionality
  */
 
-#include "../include/RPLidarC1.h"
+#include "RPLidarC1.h"
 
 RPLidarC1::RPLidarC1(HardwareSerial* serial) {
     _serial = serial;

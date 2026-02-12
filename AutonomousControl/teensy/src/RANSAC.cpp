@@ -1,4 +1,4 @@
-#include "../include/RANSAC.h"
+#include "RANSAC.h"
 
 //Converts the distance and angle (r and thada) to x and y to be used in a 2-D plane.
 void RANSAC::cartesianConversion(const std::deque<float>& angles, const std::deque<float>& distances, std::vector<points>& point){

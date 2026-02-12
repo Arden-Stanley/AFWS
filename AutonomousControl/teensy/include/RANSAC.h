@@ -22,7 +22,7 @@ STEPS:
 const int MAX_ITERATIONS = 400;
 //Everything within a 3 inch thresh-hold of the line will be considered as an inlier
 const float DIST_THRESHOLD = 30; // 75mm = 2.95 inches. 
-const int MIN_INLIERS = 20; 
+const int MIN_INLIERS = 30; 
 
 struct points {
   float x;
