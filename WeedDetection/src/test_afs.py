@@ -4,6 +4,10 @@ import torch
 import serial
 import time
 
+# TO DO LIST
+# 1.) Allow multiple "solonoids" to go off at a time 
+# 2.) Add labels to the cells
+# 3.) Automate the camera config. ie Extra camera size and divide by total cell count, apply to grid objects. 
 
 def send_signal():
     print(f"Sending high signal now..")
