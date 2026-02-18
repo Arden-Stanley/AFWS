@@ -62,6 +62,27 @@ class Grid:
         self.y2_axis = y2_axis
 
 
+def test_grid():
+    face_camera = cv2.VideoCapture(0)
+    cell_01 = Grid("cell-01", 0, 160, 300, 480)
+    cell_02 = Grid("cell-02", 161, 320, 300, 480)
+    cell_03 = Grid("cell-03", 321, 480, 300, 480)
+    cell_04 = Grid("cell-04", 481, 640, 300, 480)
+    while face_camera.isOpened():
+        verify, frame = face_camera.read()
+        cv2.rectangle(frame,(cell_01.x1_axis,cell_01.y1_axis),(cell_01.x2_axis,cell_01.y2_axis),(0,255,0),3)
+        cv2.rectangle(frame,(cell_02.x1_axis,cell_02.y1_axis),(cell_02.x2_axis,cell_02.y2_axis),(255,255,0),3)
+        cv2.rectangle(frame,(cell_03.x1_axis,cell_03.y1_axis),(cell_03.x2_axis,cell_03.y2_axis),(0,255,255),3)
+        cv2.rectangle(frame,(cell_04.x1_axis,cell_04.y1_axis),(cell_04.x2_axis,cell_04.y2_axis),(100,44,320),3)
+        if not verify:
+            break
+        k= cv2.waitKey(1) & 0xFF
+        if k == ord('q'): # press q to quit 
+            break
+        cv2.imshow("yolo", frame)
+    face_camera.release()
+    face_camera.destroyAllWindows()       
+
 def test_face(isDetected):
 
 
@@ -98,6 +119,7 @@ def test_face(isDetected):
         current_results = face_model(frame, conf=.50, verbose = False)
         isDetected = False # save coordinates to file
 
+
         #ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         # This will take each invidiual frame that has been predicted with face_model and draw bounding boxes around them 
         for result in current_results:
@@ -111,10 +133,10 @@ def test_face(isDetected):
                 bounding_y = y1 + y2 / 2
 
                 # Replace with variables for ease-of-use
-                cell_01 = Grid("cell-01", 0, 90, 270, 360)
-                cell_02 = Grid("cell-02", 91, 180, 270, 360)
-                cell_03 = Grid("cell-03", 181, 270, 270, 360)
-                cell_04 = Grid("cell-04", 271, 360, 270, 360)
+                cell_01 = Grid("cell-01", 0, 160, 300, 480)
+                cell_02 = Grid("cell-02", 161, 320, 300, 480)
+                cell_03 = Grid("cell-03", 321, 480, 300, 480)
+                cell_04 = Grid("cell-04", 481, 640, 300, 480)
                 p = [cell_01, cell_02, cell_03, cell_04]
 
                 #TEST CASES:
@@ -161,8 +183,8 @@ def test_face(isDetected):
 def main():
     #pi_camera_active()
     isDetected = False
-
-    test_face(isDetected)
+    test_grid()
+    #test_face(isDetected)
 
 
 
