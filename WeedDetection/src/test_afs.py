@@ -6,7 +6,6 @@ import time
 
 # TO DO LIST
 # 1.) Allow multiple "solonoids" to go off at a time 
-# 2.) Add labels to the cells
 # 3.) Automate the camera config. ie Extra camera size and divide by total cell count, apply to grid objects. 
 
 def send_signal():
@@ -65,19 +64,27 @@ class Grid:
         self.y1_axis = y1_axis
         self.y2_axis = y2_axis
 
-
+# Testing code to draw out the cells before implementing it
 def test_grid():
     face_camera = cv2.VideoCapture(0)
     cell_01 = Grid("cell-01", 0, 160, 300, 480)
     cell_02 = Grid("cell-02", 161, 320, 300, 480)
     cell_03 = Grid("cell-03", 321, 480, 300, 480)
     cell_04 = Grid("cell-04", 481, 640, 300, 480)
+    FONT_SIZE = .5
+    TEXT_COLOR = (255,255,255)
+    THICKNESS = 1
     while face_camera.isOpened():
         verify, frame = face_camera.read()
         cv2.rectangle(frame,(cell_01.x1_axis,cell_01.y1_axis),(cell_01.x2_axis,cell_01.y2_axis),(0,255,0),3)
         cv2.rectangle(frame,(cell_02.x1_axis,cell_02.y1_axis),(cell_02.x2_axis,cell_02.y2_axis),(255,255,0),3)
         cv2.rectangle(frame,(cell_03.x1_axis,cell_03.y1_axis),(cell_03.x2_axis,cell_03.y2_axis),(0,255,255),3)
         cv2.rectangle(frame,(cell_04.x1_axis,cell_04.y1_axis),(cell_04.x2_axis,cell_04.y2_axis),(100,44,320),3)
+
+        cv2.putText(frame, "cell-1", ((cell_01.x2_axis - 55), (cell_01.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
+        cv2.putText(frame, "cell-2", ((cell_02.x2_axis - 55), (cell_02.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
+        cv2.putText(frame, "cell-3", ((cell_03.x2_axis - 55), (cell_03.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
+        cv2.putText(frame, "cell-4", ((cell_04.x2_axis - 55), (cell_04.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
         if not verify:
             break
         k= cv2.waitKey(1) & 0xFF
@@ -113,16 +120,33 @@ def test_face(isDetected):
         time.sleep(2)
     except serial.SerialException as e:
         print(f"There was an error opening serial port: {e} ")
-        exit()
+        #exit()
 
     while face_camera.isOpened():
         verify, frame = face_camera.read()
         if not verify:
             break
-
+        # Replace with variables for ease-of-use
+        
+        cell_01 = Grid("cell-01", 0, 160, 300, 480)
+        cell_02 = Grid("cell-02", 161, 320, 300, 480)
+        cell_03 = Grid("cell-03", 321, 480, 300, 480)
+        cell_04 = Grid("cell-04", 481, 640, 300, 480)
         current_results = face_model(frame, conf=.50, verbose = False)
         isDetected = False # save coordinates to file
-
+        FONT_SIZE = .5
+        TEXT_COLOR = (255,255,255)
+        THICKNESS = 1
+        # Grid implementation for each individual cell
+        cv2.rectangle(frame,(cell_01.x1_axis,cell_01.y1_axis),(cell_01.x2_axis,cell_01.y2_axis),(0,255,0),3)
+        cv2.rectangle(frame,(cell_02.x1_axis,cell_02.y1_axis),(cell_02.x2_axis,cell_02.y2_axis),(255,255,0),3)
+        cv2.rectangle(frame,(cell_03.x1_axis,cell_03.y1_axis),(cell_03.x2_axis,cell_03.y2_axis),(0,255,255),3)
+        cv2.rectangle(frame,(cell_04.x1_axis,cell_04.y1_axis),(cell_04.x2_axis,cell_04.y2_axis),(100,44,320),3)
+        # Label implementation for each individual cell 
+        cv2.putText(frame, "cell-1", ((cell_01.x2_axis - 55), (cell_01.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
+        cv2.putText(frame, "cell-2", ((cell_02.x2_axis - 55), (cell_02.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
+        cv2.putText(frame, "cell-3", ((cell_03.x2_axis - 55), (cell_03.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
+        cv2.putText(frame, "cell-4", ((cell_04.x2_axis - 55), (cell_04.y1_axis + 20)), cv2.FONT_HERSHEY_SIMPLEX, FONT_SIZE, TEXT_COLOR,THICKNESS)
 
         #ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         # This will take each invidiual frame that has been predicted with face_model and draw bounding boxes around them 
@@ -136,39 +160,46 @@ def test_face(isDetected):
                 bounding_x = x1 + x2 / 2
                 bounding_y = y1 + y2 / 2
 
-                # Replace with variables for ease-of-use
-                cell_01 = Grid("cell-01", 0, 160, 300, 480)
-                cell_02 = Grid("cell-02", 161, 320, 300, 480)
-                cell_03 = Grid("cell-03", 321, 480, 300, 480)
-                cell_04 = Grid("cell-04", 481, 640, 300, 480)
-                p = [cell_01, cell_02, cell_03, cell_04]
-
+     
                 #TEST CASES:
-                hand_was_detected = False
-                
+                hand_was_detected_A = False
+                hand_was_detected_B = False
+                hand_was_detected_C = False
+                hand_was_detected_D = False
+                # Power principle
+                # If A and B do 
+                # If A and C do
+                # if A and D do 
+                # If B and C do
+                # if B and D do
+                # if C and D do 
+
                 #Change the hand_was_detected to a bunch of booleans for each specific cell
-                if bounding_y > p.cell_01.y1 and bounding_x > p.cell_01.x1 and bounding_x < p.cell_01.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected = True
+                if bounding_y > cell_01.y1_axis and bounding_x > cell_01.x1_axis and bounding_x < cell_01.x2_axis and not hand_was_detected_A: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected_A = True
                     save_to_file(x1,y1, "Grid 1")
-                    arduinoSignal(ser, '0')
-                    print(f"Weed detected, moving AFS 5 feet forward...")
-                if bounding_y > p.cell_02.y1 and bounding_x > p.cell_02.x1 and bounding_x < p.cell_02.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected = True
-                    save_to_file(x1,y1, "Grid 1")
-                    arduinoSignal(ser, '1')
-                    print(f"Weed detected, moving AFS 5 feet forward...")
-                if bounding_y > p.cell_03.y1 and bounding_x > p.cell_03.x1 and bounding_x < p.cell_03.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected = True
-                    save_to_file(x1,y1, "Grid 1")
-                    arduinoSignal(ser, '2')
-                    print(f"Weed detected, moving AFS 5 feet forward...")
-                if bounding_y > p.cell_04.y1 and bounding_x > p.cell_04.x1 and bounding_x < p.cell_04.x2 and not hand_was_detected: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected = True
-                    save_to_file(x1,y1, "Grid 1")
-                    arduinoSignal(ser, '3')
-                    print(f"Weed detected, moving AFS 5 feet forward...")
+                    #arduinoSignal(ser, '0')
+                    print(f"Weed detected at Cell 1, moving AFS 5 feet forward...")
+                if bounding_y > cell_02.y1_axis and bounding_x > cell_02.x1_axis  and bounding_x < cell_02.x2_axis and not hand_was_detected_B : #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected_B = True
+                    save_to_file(x1,y1, "Grid 2")
+                    #arduinoSignal(ser, '1')
+                    print(f"Weed detected at Cell 2, moving AFS 5 feet forward...")
+                if bounding_y > cell_03.y1_axis and bounding_x > cell_03.x1_axis  and bounding_x < cell_03.x2_axis and not hand_was_detected_C: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected_C = True
+                    save_to_file(x1,y1, "Grid 3")
+                    #arduinoSignal(ser, '2')
+                    print(f"Weed detected at Cell 3, moving AFS 5 feet forward...")
+                if bounding_y > cell_04.y1_axis and bounding_x > cell_04.x1_axis  and bounding_x < cell_04.x2_axis and not hand_was_detected_D: #Test to see if it writes to file if bounding box passes 250 for y coordinate
+                    hand_was_detected_D = True
+                    save_to_file(x1,y1, "Grid 4")
+                    #arduinoSignal(ser, '3')
+                    print(f"Weed detected at Cell 4, moving AFS 5 feet forward...")
                 elif bounding_y<= 249:
                     hand_was_detected = False
+                    hand_was_detected_B = False
+                    hand_was_detected_C = False
+                    hand_was_detected_D = False
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
                 label = f'{class_name}, {confidence}, {x1}, {y1}' # THis is the label that is above the bounding box
@@ -187,8 +218,8 @@ def test_face(isDetected):
 def main():
     #pi_camera_active()
     isDetected = False
-    test_grid()
-    #test_face(isDetected)
+    #test_grid()
+    test_face(isDetected)
 
 
 
