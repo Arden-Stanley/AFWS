@@ -7,11 +7,11 @@ def main():
 
     #We are going to train the model off of weed.v1i.yolov8
 
-    folder = "rps"
+    folder = "dataset"
     print(f"We are training the model from {folder} directory")
     model.train(
         data = "./" + folder + "/data.yaml", # We are getting the data from weed.v1i.yolov8
-        epochs = 55, #more epochs, longer it takes to run 
+        epochs = 55 , #more epochs, longer it takes to run 
         workers = 8, #more workers, faster
         imgsz = 640, #size to adjust image
         batch = 16, 

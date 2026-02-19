@@ -157,49 +157,23 @@ def test_face(isDetected):
                 x1, y1, x2, y2 = map(int, box.xyxy[0]) # Takes the cooridnates out of a tensor and then changes the value from float to int for cv2
                 confidence = box.conf[0].item() # confidence for the identified class
                 
-                bounding_x = x1 + x2 / 2
-                bounding_y = y1 + y2 / 2
+                bounding_x = (x1 + x2) / 2
+                bounding_y = (y1 + y2) / 2
+                #print(f"This is bounding_x: {bounding_x}, this is y: {bounding_y}")
+                hand_detected = [False, False, False, False]
+                grid = [(cell_01, "Cell-01", '0'), (cell_02, "Cell-02", '1'), (cell_03, "Cell-03",'2'), (cell_04, "Cell-04",'3')]
+                for i, (cell, label, signal) in enumerate(grid):
+                    grid_system = (
+                        bounding_y > cell.y1_axis and cell.x1_axis < bounding_x < cell.x2_axis
+                    )
+                    if grid_system and not hand_detected[i]:
+                        hand_detected[i] = True
+                        save_to_file(x1,y1, label)
+                        #arduinoSignal(ser, '3')
+                        print(f"Weed detected at {label}, moving AFS 5 feet forward...")
+                    if not grid_system:
+                        hand_detected[i] = False
 
-     
-                #TEST CASES:
-                hand_was_detected_A = False
-                hand_was_detected_B = False
-                hand_was_detected_C = False
-                hand_was_detected_D = False
-                # Power principle
-                # If A and B do 
-                # If A and C do
-                # if A and D do 
-                # If B and C do
-                # if B and D do
-                # if C and D do 
-
-                #Change the hand_was_detected to a bunch of booleans for each specific cell
-                if bounding_y > cell_01.y1_axis and bounding_x > cell_01.x1_axis and bounding_x < cell_01.x2_axis and not hand_was_detected_A: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected_A = True
-                    save_to_file(x1,y1, "Grid 1")
-                    #arduinoSignal(ser, '0')
-                    print(f"Weed detected at Cell 1, moving AFS 5 feet forward...")
-                if bounding_y > cell_02.y1_axis and bounding_x > cell_02.x1_axis  and bounding_x < cell_02.x2_axis and not hand_was_detected_B : #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected_B = True
-                    save_to_file(x1,y1, "Grid 2")
-                    #arduinoSignal(ser, '1')
-                    print(f"Weed detected at Cell 2, moving AFS 5 feet forward...")
-                if bounding_y > cell_03.y1_axis and bounding_x > cell_03.x1_axis  and bounding_x < cell_03.x2_axis and not hand_was_detected_C: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected_C = True
-                    save_to_file(x1,y1, "Grid 3")
-                    #arduinoSignal(ser, '2')
-                    print(f"Weed detected at Cell 3, moving AFS 5 feet forward...")
-                if bounding_y > cell_04.y1_axis and bounding_x > cell_04.x1_axis  and bounding_x < cell_04.x2_axis and not hand_was_detected_D: #Test to see if it writes to file if bounding box passes 250 for y coordinate
-                    hand_was_detected_D = True
-                    save_to_file(x1,y1, "Grid 4")
-                    #arduinoSignal(ser, '3')
-                    print(f"Weed detected at Cell 4, moving AFS 5 feet forward...")
-                elif bounding_y<= 249:
-                    hand_was_detected = False
-                    hand_was_detected_B = False
-                    hand_was_detected_C = False
-                    hand_was_detected_D = False
                 class_id = int(box.cls[0]) #Class id to use with the class_name 
                 class_name = face_model.names[class_id]
                 label = f'{class_name}, {confidence}, {x1}, {y1}' # THis is the label that is above the bounding box
