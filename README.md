@@ -5,11 +5,11 @@ Efficient and targeted weed management remains a significant challenge in modern
 
 ## Photos of prototype 
 
-![Application screenshot](images/2.png)
+![Application screenshot](images/2.jpg)
 
-![Application screenshot](images/3.png)
+![Application screenshot](images/3.jpg)
 
-![Application screenshot](images/4.png)
+![Application screenshot](images/4.jpg)
 
 
 
