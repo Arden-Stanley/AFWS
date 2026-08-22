@@ -15,7 +15,7 @@ Efficient and targeted weed management remains a significant challenge in modern
 
 ## Demo of the autonomy 
 
-[▶️ Demo](images/agvideo.gif)
+![▶️ Demo](images/agvideo.gif)
 
 ## Link to research paper - https://ieeexplore.ieee.org/document/11475990
 
