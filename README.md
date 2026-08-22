@@ -5,17 +5,11 @@ Efficient and targeted weed management remains a significant challenge in modern
 
 ## Photos of prototype 
 
-<img src="images/1.jpg" width="300">
-
-
-
 <img src="images/2.jpg" width="300">
-
 
 <img src="images/3.jpg" width="300">
 
-
-
+<img src="images/4.jpg" width="300">
 
 
 ## Demo of the autonomy 
